@@ -1,0 +1,17 @@
+# package directories
+node_modules
+jspm_packages
+dist
+
+# Serverless directories
+.serverless
+
+# own config
+.vscode
+
+# jest
+
+coverage
+
+
+
