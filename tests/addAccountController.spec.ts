@@ -1,5 +1,0 @@
-describe('Add Account', () => {
-	it('', () => {
-
-	})
-})
