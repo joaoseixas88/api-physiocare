@@ -10,6 +10,7 @@ export class AddAccountInMemoryRepository implements AddUserRepository {
 			id,
 			email: params.email,
 			name: params.name,
+			password: params.password
 		};
 		this.accounts.push(account)
 	}
