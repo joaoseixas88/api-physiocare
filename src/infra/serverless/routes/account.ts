@@ -1,4 +1,4 @@
-const path = "src/infra/serverless/adapters";
+const path = "src/infra/serverless/functions";
 
 export const account = {
 	signup: {

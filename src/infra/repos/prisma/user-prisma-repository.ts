@@ -1,36 +1,55 @@
-import { AddUserRepository, FindUserRepository } from "@/data/contracts/repos";
-import { dbClient } from "@/presentation/helpers/prisma-client";
+import {
+	AddUserRepository,
+	AuthenticateUserRepository,
+	FindUserRepository,
+} from "@/data/contracts/repos";
+import { User } from "@/domain/models";
+import { dbClient } from "@/presentation/helpers";
 
 export class UserPrismaRepository
-	implements AddUserRepository, FindUserRepository
+	implements AddUserRepository, FindUserRepository, AuthenticateUserRepository
 {
-	async add(params: AddUserRepository.Params): Promise<AddUserRepository.Result> {
-	
-		const addUser = await dbClient.user.create({
+	async add(
+		params: AddUserRepository.Params
+	): Promise<AddUserRepository.Result> {
+		const user = await dbClient.user.create({
 			data: {
-				...params,				
+				...params,
 			},
 		});
-
-		return !!addUser
+		return !!user;
 	}
+
 	async find(
 		params: FindUserRepository.Params
 	): Promise<FindUserRepository.Result> {
-		const findUser = await dbClient.user.findUnique({
+		const user = await dbClient.user.findUnique({
+			where: {
+				email: params.email,
+			},
+			include: {
+				patients: {
+					include: {
+						attendances: true,
+					},
+				},
+			},
+		});
+		if (user) return user;
+		return undefined;
+	}
+
+	async auth(
+		params: AuthenticateUserRepository.Params
+	): Promise<AuthenticateUserRepository.Result> {
+		const user = await dbClient.user.findUnique({
 			where: {
 				email: params.email,
 			},
 		});
-
-		if (findUser !== null) {
-			return {
-				email: findUser.email,
-				id: findUser.id,
-				name: findUser.name,
-				password: findUser.password,
-			};
+		if (!user) {
+			return undefined;
 		}
-		return undefined
+		return { password: user.password };
 	}
 }

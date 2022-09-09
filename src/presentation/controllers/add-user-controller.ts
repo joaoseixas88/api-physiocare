@@ -1,15 +1,14 @@
+import { Authentication } from "@/data/services";
+import { AddUser } from "@/domain/features/account/add-user";
+import { AddUserDTO } from "@/domain/models";
 import { badRequest, ok } from "@/presentation/helpers";
-import { HttpResponse } from "@/presentation/http";
-import { AddUserService } from "src/data/services/add-user-service";
-import { MissingParamsException, RegistrationException } from "../errors";
-import { Controller } from "./controller";
+import { Validation } from "src/validation";
+import { MissingParamsException } from "../errors";
+import { InvalidParamsException } from "../errors/invalid-params-error";
+import { HttpResponse } from "../protocols";
+import { Controller } from "../protocols/controller";
 
-interface IRequest {
-	email: string;
-	name: string;
-	password: string;
-	passwordConfirmation: string;
-}
+
 
 interface IResponse {
 	name: string;
@@ -20,41 +19,40 @@ type Iterator = "name" | "email" | "password" | "passwordConfirmation";
 
 export class AddUserController implements Controller {
 	constructor(
-		private readonly userService: AddUserService,
-		// private readonly findUserService: FindUserService
+		private readonly userService: AddUser,
+		private readonly validation: Validation,
+		private readonly authentication: Authentication
 	) {}
 	async handle({
 		body,
-	}: Controller.Params<IRequest>): Promise<HttpResponse<IResponse>> {
-		const requiredParams = [
-			"name",
-			"email",
-			"password",
-			"passwordConfirmation",
-		];		
-		if (!body) return badRequest();
+	}: Controller.Params<AddUserDTO>): Promise<HttpResponse<IResponse>> {
 
-		for (const param of requiredParams) {
-			if (!body[param as Iterator]) {
-				return badRequest(new MissingParamsException(param));
-			}
+		if(!body) return badRequest(new InvalidParamsException())
+		
+		const error = this.validation.validate(body)
+		if (error){
+			return badRequest(error)
 		}
 
-		if (body.password !== body.passwordConfirmation) return badRequest();
-		
-		const user = await this.userService.perform({
+		const user = await this.userService.add({
 			email: body.email,
 			name: body.name,
 			password: body.password,
 		});
 
-
 		if (user instanceof Error) {
 			return badRequest(user)
 		}
+
+		const token = await this.authentication.signIn({
+			email: body.email,
+			password: body.password
+		})
+		
 		const responseUser = {
 			name: body.name,
 			email: body.email,
+			accessToken: token
 		};
 
 		return ok(responseUser);

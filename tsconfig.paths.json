@@ -6,6 +6,8 @@
       "@/data/*": ["src/data/*"],
       "@/infra/*": ["src/infra/*"],
       "@/presentation/*": ["src/presentation/*"],
+      "@/main/*": ["src/main/*"],
+      "@/validation/*": ["src/validation/*"],
       "@libs/*": ["src/libs/*"]
     }
   }

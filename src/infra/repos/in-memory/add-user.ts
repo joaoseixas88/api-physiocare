@@ -1,26 +1,34 @@
-import { AddUserRepository, FindUserRepository } from "@/data/contracts/repos";
-import { AddUserModel } from "@/domain/models/add-user-model";
-import { UserModel } from "@/domain/models/user-model";
-import { v4 as uuid } from "uuid";
+import {
+	AddUserRepository,
+	AuthenticateUserRepository,
+	FindUserRepository,
+} from "@/data/contracts/repos";
+import { User } from "@/domain/models";
+import { AuthenticationException } from "@/presentation/errors";
 
-export class AddAccountInMemoryRepository implements AddUserRepository, FindUserRepository  {
-	constructor(private readonly users: UserModel[] = []) {}
-	
-	async add(params: AddUserModel): Promise<boolean> {
-		const id = uuid();
-		const user: UserModel = {
-			id,
-			email: params.email,
-			name: params.name,
-			password: params.password
-		};
-		this.users.push(user)
-		return !!user
+export class AddAccountInMemoryRepository
+	implements AddUserRepository, FindUserRepository, AuthenticateUserRepository
+{
+	constructor(private readonly users: User[] = []) {}
+
+	async add(params: User): Promise<boolean> {
+		const user: User = params;
+		this.users.push(user);
+		return !!user;
 	}
 
+	async find(
+		params: FindUserRepository.Params
+	): Promise<FindUserRepository.Result> {
+		const user = this.users.find((user) => user.email === params.email);
+		return user;
+	}
 
-	async find(params: FindUserRepository.Params): Promise<FindUserRepository.Result> {
-		const user = this.users.find(user => user.email === params.email)
-		return user
+	async auth(
+		params: AuthenticateUserRepository.Params
+	): Promise<AuthenticateUserRepository.Result> {
+		const user = this.users.find((user) => user.email === params.email);
+		if (!user) return undefined;
+		return { password: user.password };
 	}
 }

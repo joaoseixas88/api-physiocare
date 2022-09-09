@@ -1,20 +1,13 @@
-import { AddUserModel } from "@/domain/models/add-user-model";
-import { UserModel } from "@/domain/models/user-model";
+import { User } from "@/domain/models";
 
 export interface AddUserRepository {
-	add(params: AddUserRepository.Params): Promise<AddUserRepository.Result>
+	add(params: AddUserRepository.Params): Promise<AddUserRepository.Result>;
 }
 
 export namespace AddUserRepository {
-	export type Params = {
-		id: string,
-		email: string;
-    name: string;
-    password: string;
-		created_at: Date
-	};
+	export type Params = User;
 
-	export type Result = boolean
+	export type Result = boolean;
 }
 
 export interface FindUserRepository {
@@ -25,5 +18,23 @@ export namespace FindUserRepository {
 	export type Params = {
 		email: string;
 	};
-	export type Result = UserModel | undefined
+	export type Result = User | undefined;
+}
+
+export interface AuthenticateUserRepository {
+	auth(
+		params: AuthenticateUserRepository.Params
+	): Promise<AuthenticateUserRepository.Result>;
+}
+
+export namespace AuthenticateUserRepository {
+	export type Params = {
+		email: string;
+	};
+
+	export type Result =
+		| {
+				password: string;
+		  }
+		| undefined;
 }

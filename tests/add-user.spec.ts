@@ -1,19 +1,21 @@
-import { AddUserService } from "@/data/services/add-user-service";
-import { FindUserService } from "@/data/services/find-user-service";
+import { DbAddUser } from "@/data/services";
+import { BcryptAdapter, UuidAdapter } from "@/infra/cryptography";
 import { AddAccountInMemoryRepository } from "@/infra/repos/in-memory/add-user";
-import { mock, MockProxy } from "jest-mock-extended";
 import { AddUserController } from "@/presentation/controllers/add-user-controller";
-import { AddUserRepository, FindUserRepository } from "@/data/contracts/repos";
-import { AddUserModel } from "@/domain/models/add-user-model";
-import { UuidGenerator } from "@/data/contracts/crypto/uuid-generator";
+import { makeAddUserValidation } from "@/main/factories";
+import { makeAuthService } from "@/main/factories/auth-service-factory";
+
 
 
 
 const makeSut = () => {
 	const repository = new AddAccountInMemoryRepository();
-	const uuidGenerator = new UuidGenerator()
-	const addUserService = new AddUserService(repository,uuidGenerator);
-	const addUserController = new AddUserController(addUserService);
+	const uuidGenerator = new UuidAdapter()
+	const crypto = new BcryptAdapter(10)
+	const addUserService = new DbAddUser(repository,uuidGenerator,crypto);
+	const validation = makeAddUserValidation()
+	const auth = makeAuthService()
+	const addUserController = new AddUserController(addUserService,validation,auth);
 
 	return addUserController
 }
