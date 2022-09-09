@@ -24,10 +24,22 @@ module.exports = {
 	module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         loader: 'ts-loader',
-        exclude: /node_modules/,
+        exclude: [
+          [
+            // path.resolve(__dirname, 'node_modules'),
+            path.resolve(__dirname, '.serverless'),
+            path.resolve(__dirname, '.webpack'),
+          ],
+        ],
+				options: {
+					transpileOnly: true,
+					// experimentalWatchApi: true,
+					experimentalFileCaching: true,
+				}
       },
+			
     ],
   },
 }

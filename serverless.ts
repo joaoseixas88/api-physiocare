@@ -1,4 +1,5 @@
 import type { AWS } from "@serverless/typescript";
+import { account } from "src/infra/serverless/routes/account";
 
 const serverlessConfiguration: AWS = {
 	service: "api-physiocare",
@@ -6,29 +7,41 @@ const serverlessConfiguration: AWS = {
 	plugins: [
 		"serverless-offline",
 		"serverless-webpack",
-		"serverless-plugin-typescript",
+		"serverless-webpack-prisma",
+		"serverless-dotenv-plugin",
 	],
 	provider: {
 		name: "aws",
 		runtime: "nodejs14.x",
-		apiGateway: {
-			minimumCompressionSize: 1024,
-			shouldStartNameWithService: true,
-		},
+		// apiGateway: {
+		// 	minimumCompressionSize: 1024,
+		// 	shouldStartNameWithService: true,
+		// },
 		environment: {
 			AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
 			NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
 		},
 	},
 	// import the function via paths
-	functions: {},
-	package: { individually: true },
+	functions: {
+		...account,
+	},
+	package: {
+		patterns: [
+			"!node_modules/.prisma/client/libquery_engine-*",
+			"node_modules/.prisma/client/libquery_engine-rhel-*",
+			"!node_modules/prisma/libquery_engine-*",
+			"!node_modules/@prisma/engines/**",
+		],
+	},
 	custom: {
 		webpack: {
 			webpackConfig: "webpack.config.js",
-			includeModules: false,
+			includeModules: true,
 			packager: "npm",
-			excludeFiles: "tests/**/*.spec.ts",
+			packagerOptions: {
+				scripts: ["prisma generate"],
+			},
 		},
 	},
 };

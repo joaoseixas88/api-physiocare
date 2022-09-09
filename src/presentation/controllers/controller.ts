@@ -1,9 +1,16 @@
-import { HttpRequest, HttpResponse } from "@presentation/http";
+import { HttpRequest, HttpResponse } from "@/presentation/http";
 
 export interface Controller {
-	handle(params: HttpRequest): Promise<HttpResponse>;
+	handle(params: Controller.Params): Promise<Controller.Result>;
 }
 
-// export class Controller {
-// 	async handle(params: HttpRequest): Promise<HttpResponse>{}
-// }
+export namespace Controller {
+	export type Params<T = any, Y = any, Z = any> = {
+		body?: T;
+		headers?: any;
+		pathParameters?: Y;
+		queryStringParameters?: Z;
+	};
+
+	export type Result = HttpResponse;
+}

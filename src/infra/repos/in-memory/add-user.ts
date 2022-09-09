@@ -1,17 +1,26 @@
-import { UserModel } from "@domain/models/user-model";
-import { AddUserRepository } from "src/data/repos/add-user-repository";
+import { AddUserRepository, FindUserRepository } from "@/data/contracts/repos";
+import { AddUserModel } from "@/domain/models/add-user-model";
+import { UserModel } from "@/domain/models/user-model";
 import { v4 as uuid } from "uuid";
 
-export class AddAccountInMemoryRepository implements AddUserRepository {
-	constructor(private readonly accounts: UserModel[] = []) {}
-	async add(params: AddUserModel): Promise<void> {
+export class AddAccountInMemoryRepository implements AddUserRepository, FindUserRepository  {
+	constructor(private readonly users: UserModel[] = []) {}
+	
+	async add(params: AddUserModel): Promise<boolean> {
 		const id = uuid();
-		const account: UserModel = {
+		const user: UserModel = {
 			id,
 			email: params.email,
 			name: params.name,
 			password: params.password
 		};
-		this.accounts.push(account)
+		this.users.push(user)
+		return !!user
+	}
+
+
+	async find(params: FindUserRepository.Params): Promise<FindUserRepository.Result> {
+		const user = this.users.find(user => user.email === params.email)
+		return user
 	}
 }
