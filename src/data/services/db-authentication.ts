@@ -1,7 +1,11 @@
 import { SignIn } from "@/domain/features/account/sign-in";
 import { AccessToken } from "@/domain/models/access-token";
 import { BcryptAdapter, JwtAdapter } from "@/infra/cryptography";
-import { AuthenticationException, NotFoundException } from "@/presentation/errors";
+import {
+	AuthenticationException,
+	NotFoundException,
+} from "@/presentation/errors";
+import { captureRejectionSymbol } from "events";
 import { AuthenticateUserRepository } from "../contracts/repos";
 
 export class Authentication implements SignIn {
@@ -14,17 +18,19 @@ export class Authentication implements SignIn {
 		params: SignIn.Params
 	): Promise<AccessToken | AuthenticationException> {
 		const user = await this.authenticateUserRepo.auth({
-			email: params.email
-		})
-		if(!user) return new NotFoundException('User not found')
-		const encryptedPassword = user?.password
-		const verified = await this.bcryptAdapter.verify(params.password, encryptedPassword);
+			email: params.email,
+		});
+		if (!user) return new NotFoundException("User not found");
+		const encryptedPassword = user?.password;
+		const verified = await this.bcryptAdapter.verify(
+			params.password,
+			encryptedPassword
+		);
 		if (verified) {
-			const token = this.jwtAdapter.generate();
-			return {
-				accessToken: token,
-			};
+			const accessToken = this.jwtAdapter.generate({ id: user.id });
+			return accessToken
+			
 		}
-		return new AuthenticationException('Email or password incorrect');
+		return new AuthenticationException("Email or password incorrect");
 	}
 }

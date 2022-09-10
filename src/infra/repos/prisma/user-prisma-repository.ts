@@ -50,6 +50,6 @@ export class UserPrismaRepository
 		if (!user) {
 			return undefined;
 		}
-		return { password: user.password };
+		return { password: user.password, id: user.id };
 	}
 }

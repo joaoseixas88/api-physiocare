@@ -4,7 +4,6 @@ import {
 	FindUserRepository,
 } from "@/data/contracts/repos";
 import { User } from "@/domain/models";
-import { AuthenticationException } from "@/presentation/errors";
 
 export class AddAccountInMemoryRepository
 	implements AddUserRepository, FindUserRepository, AuthenticateUserRepository
@@ -29,6 +28,6 @@ export class AddAccountInMemoryRepository
 	): Promise<AuthenticateUserRepository.Result> {
 		const user = this.users.find((user) => user.email === params.email);
 		if (!user) return undefined;
-		return { password: user.password };
+		return { password: user.password, id: user.id };
 	}
 }

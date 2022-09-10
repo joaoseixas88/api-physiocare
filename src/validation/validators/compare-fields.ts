@@ -8,7 +8,8 @@ export class CompareFieldValidation implements Validation {
 	) {}
 
 	validate(input: any): Error | undefined {
-		if (input[this.field] !== input(this.fieldToCompare)) {
+		
+		if (input[this.field] !== input[this.fieldToCompare]) {
 			return new InvalidParamsException(this.fieldToCompare);
 		}
 	}

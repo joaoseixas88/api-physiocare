@@ -6,7 +6,7 @@ import { UserPrismaRepository } from "@/infra/repos";
 
 export const makeAuthService = (): Authentication => {
 	const bcrypt = makeBcrypt();
-	const jwtAdapter = new JwtAdapter(config.jwt);
+	const jwtAdapter = new JwtAdapter(config.jwt,'1d');
 	const authRepo = new UserPrismaRepository();
 	const service = new Authentication(bcrypt, jwtAdapter, authRepo);
 	return service;

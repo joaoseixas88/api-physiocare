@@ -1,5 +1,5 @@
 import { AddUser } from "@/domain/features/account/add-user";
-import { RegistrationException } from "@/presentation/errors";
+import { AuthenticationException } from "@/presentation/errors";
 import { BcryptAdapter } from "../../infra/cryptography/bcrypt-adapter";
 import { UuidGenerator } from "../contracts/cryptography/uuid-generator";
 import { AddUserRepository, FindUserRepository } from "../contracts/repos";
@@ -15,7 +15,7 @@ export class DbAddUser implements AddUser {
 			email: params.email,
 		});
 		if (userData) {
-			return new RegistrationException("User already exists");
+			return new AuthenticationException("User already exists");
 		}
 
 		const hashPassword = await this.crypto.encrypt(params.password)
@@ -25,8 +25,7 @@ export class DbAddUser implements AddUser {
 			...params,
 			id,
 			password: hashPassword,
-			created_at: new Date(),
-			patients: []
+			created_at: new Date()
 		});
 		return !!user;
 	}

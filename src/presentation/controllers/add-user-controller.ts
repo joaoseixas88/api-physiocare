@@ -15,7 +15,6 @@ interface IResponse {
 	email: string;
 }
 
-type Iterator = "name" | "email" | "password" | "passwordConfirmation";
 
 export class AddUserController implements Controller {
 	constructor(
@@ -44,7 +43,7 @@ export class AddUserController implements Controller {
 			return badRequest(user)
 		}
 
-		const token = await this.authentication.signIn({
+		const accessToken = await this.authentication.signIn({
 			email: body.email,
 			password: body.password
 		})
@@ -52,7 +51,7 @@ export class AddUserController implements Controller {
 		const responseUser = {
 			name: body.name,
 			email: body.email,
-			accessToken: token
+			accessToken
 		};
 
 		return ok(responseUser);
