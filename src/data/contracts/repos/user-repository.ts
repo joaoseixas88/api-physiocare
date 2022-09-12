@@ -5,7 +5,7 @@ export interface AddUserRepository {
 }
 
 export namespace AddUserRepository {
-	export type Params = Omit<User,'patients'>
+	export type Params = Omit<User, "patients">;
 
 	export type Result = boolean;
 }
@@ -34,7 +34,7 @@ export namespace AuthenticateUserRepository {
 
 	export type Result =
 		| {
-				id: string
+				id: string;
 				password: string;
 		  }
 		| undefined;

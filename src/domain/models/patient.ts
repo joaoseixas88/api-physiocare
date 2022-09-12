@@ -11,12 +11,13 @@ export type Patient = {
 }
 
 export type AddPatientDTO = {
+	userId: string
 	name: string
 	age: number
 	price: number
-	weekDays: string[]
+	weekDays: WeekDay[]
 }
 
-
+export type WeekDay = 'sunday' | 'monday'| 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday'
 
 

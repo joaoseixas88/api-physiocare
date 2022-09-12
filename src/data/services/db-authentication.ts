@@ -27,7 +27,7 @@ export class Authentication implements SignIn {
 			encryptedPassword
 		);
 		if (verified) {
-			const accessToken = this.jwtAdapter.generate({ id: user.id });
+			const accessToken = this.jwtAdapter.generate({ sub: user.id });
 			return accessToken
 			
 		}

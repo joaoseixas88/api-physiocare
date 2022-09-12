@@ -1,3 +1,4 @@
+import { patient } from "@/infra/serverless/routes/patient";
 import type { AWS } from "@serverless/typescript";
 import { account } from "src/infra/serverless/routes/account";
 
@@ -12,7 +13,7 @@ const serverlessConfiguration: AWS = {
 	],
 	provider: {
 		name: "aws",
-		runtime: "nodejs14.x",
+		runtime: "nodejs14.x",		
 		// apiGateway: {
 		// 	minimumCompressionSize: 1024,
 		// 	shouldStartNameWithService: true,
@@ -24,7 +25,8 @@ const serverlessConfiguration: AWS = {
 	},
 	// import the function via paths
 	functions: {
-		...account,
+		...account,		
+		...patient
 	},
 	package: {
 		patterns: [

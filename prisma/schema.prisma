@@ -2,8 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
-	binaryTargets = ["native", "rhel-openssl-1.0.x"]
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
 }
 
 datasource db {
@@ -27,15 +27,15 @@ model patient {
   price       Float
   created_at  DateTime
   weekDays    String[]
-  userId      String?
-  user        user?         @relation(fields: [userId], references: [id])
+  userId      String
+  user        user          @relation(fields: [userId], references: [id])
   attendances attendances[]
 }
 
 model attendances {
   id         String   @id @default(uuid())
   created_at DateTime
-  patientId  String?
+  patientId  String
   patient    patient? @relation(fields: [patientId], references: [id])
 }
 

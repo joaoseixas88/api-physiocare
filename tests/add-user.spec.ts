@@ -35,7 +35,7 @@ describe("AddUserServ", () => {
 	});
 
 	it("Should be able to add a user", async () => {
-		const user = await sut.handle({ body });
+		const user = await sut.handle(body);
 		expect(user.statusCode).toBe(200);
 	});
 
@@ -47,7 +47,7 @@ describe("AddUserServ", () => {
 			passwordConfirmation: "any_password",
 		};
 
-		const user = await sut.handle({ body });
+		const user = await sut.handle(body);
 		expect(user.statusCode).toBe(400);
 	});
 
@@ -59,13 +59,14 @@ describe("AddUserServ", () => {
 			passwordConfirmation: "another_password",
 		};
 
-		const user = await sut.handle({ body });
+		const user = await sut.handle(body);
 		expect(user.statusCode).toBe(400);
 	});
 
 	it("Should return 400 if user already exists ", async () => {
-		await sut.handle({ body })
-		const user = await sut.handle({ body });
+		await sut.handle(body)
+		const user = await sut.handle(body);
 		expect(user.statusCode).toBe(400);
+		
 	});
 });

@@ -6,12 +6,7 @@ export interface Controller {
 }
 
 export namespace Controller {
-	export type Params<T = any, Y = any, Z = any> = {
-		body?: T;
-		headers?: any;
-		pathParameters?: Y;
-		queryStringParameters?: Z;
-	};
+	export type Params<T = any> = T
 
 	export type Result = HttpResponse;
 }

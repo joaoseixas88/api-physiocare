@@ -1,7 +1,7 @@
 import { Authentication } from "@/data/services";
 import { AddUser } from "@/domain/features/account/add-user";
 import { AddUserDTO } from "@/domain/models";
-import { badRequest, ok } from "@/presentation/helpers";
+import { badRequest, notAuthorized, ok } from "@/presentation/helpers";
 import { Validation } from "src/validation";
 import { MissingParamsException } from "../errors";
 import { InvalidParamsException } from "../errors/invalid-params-error";
@@ -13,6 +13,7 @@ import { Controller } from "../protocols/controller";
 interface IResponse {
 	name: string;
 	email: string;
+	accessToken: string
 }
 
 
@@ -22,21 +23,18 @@ export class AddUserController implements Controller {
 		private readonly validation: Validation,
 		private readonly authentication: Authentication
 	) {}
-	async handle({
-		body,
-	}: Controller.Params<AddUserDTO>): Promise<HttpResponse<IResponse>> {
-
-		if(!body) return badRequest(new InvalidParamsException())
+	async handle(params: Controller.Params<AddUserDTO>): Promise<HttpResponse<IResponse>> {
 		
-		const error = this.validation.validate(body)
+		
+		const error = this.validation.validate(params)
 		if (error){
 			return badRequest(error)
 		}
 
 		const user = await this.userService.add({
-			email: body.email,
-			name: body.name,
-			password: body.password,
+			email: params.email,
+			name: params.name,
+			password: params.password,
 		});
 
 		if (user instanceof Error) {
@@ -44,13 +42,13 @@ export class AddUserController implements Controller {
 		}
 
 		const accessToken = await this.authentication.signIn({
-			email: body.email,
-			password: body.password
+			email: params.email,
+			password: params.password
 		})
 		
 		const responseUser = {
-			name: body.name,
-			email: body.email,
+			name: params.name,
+			email: params.email,
 			accessToken
 		};
 

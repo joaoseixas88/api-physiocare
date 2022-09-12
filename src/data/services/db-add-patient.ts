@@ -9,20 +9,18 @@ export class DbAddPatient implements AddPatient {
 		private readonly uuidGenerator: UuidGenerator
 	) {}
 	async add(params: AddPatient.Params): Promise<boolean> {
-		const { age, name, price, weekDays } = params;
+		const { age, name, price, weekDays, userId } = params;
 		const id = this.uuidGenerator.generate();
-		const patient: Patient = {
+		const patient: AddPatientRepository.Params = {
 			age,
 			name,
 			price,
 			weekDays,
-			attendances: [],
 			created_at: new Date(),
 			id,
+			userId
 		};
-
 		const result = this.addPatientRepository.add(patient);
-
 		return result;
 	}
 }

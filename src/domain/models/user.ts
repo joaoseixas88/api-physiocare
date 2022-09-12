@@ -1,4 +1,4 @@
-import { Patient } from "./patients"
+import { Patient } from "./patient"
 
 export interface User{
 	id: string
@@ -18,6 +18,7 @@ export type AddUserDTO = {
 	name: string;
 	password: string
 	passwordConfirmation: string
+	userId?: string
 }
 
 

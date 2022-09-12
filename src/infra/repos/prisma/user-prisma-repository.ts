@@ -3,7 +3,7 @@ import {
 	AuthenticateUserRepository,
 	FindUserRepository,
 } from "@/data/contracts/repos";
-import { User } from "@/domain/models";
+import { Patient, User } from "@/domain/models";
 import { dbClient } from "@/presentation/helpers";
 
 export class UserPrismaRepository
@@ -35,7 +35,12 @@ export class UserPrismaRepository
 				},
 			},
 		});
-		if (user) return user;
+		
+		
+		
+		if (user) {
+			return user
+		}
 		return undefined;
 	}
 

@@ -1,5 +1,6 @@
+import { authorizer } from "@/infra/serverless/security/auth";
 import { Controller } from "@/presentation/controllers";
-import { serverError } from "@/presentation/helpers";
+import { badRequest, serverError } from "@/presentation/helpers";
 import { ServerlessHttpResponse } from "@/presentation/protocols";
 import { APIGatewayProxyEventV2, Context } from "aws-lambda";
 import { httpAdapter } from "./http-adapter";
@@ -18,21 +19,28 @@ export const serverlessAdapter = async (
 			requestContext,
 		} = event;
 		const parsedBody = body ? JSON.parse(body) : undefined;
-		
-		
+		let params: any = {};
 
-		const response = await controller.handle({
-			body: parsedBody,
-			headers,
-			pathParameters,
-			queryStringParameters,
-			// ...requestContext
-			
-		});
+		params = {
+			...parsedBody,
+			...pathParameters,
+			...queryStringParameters,
+		};
+
+		const authorization = headers.authorization;
+		if (authorization) {
+			const auth = authorizer(authorization);
+			const userId = auth?.userId;
+			if (!userId) {
+				return httpAdapter(badRequest(auth?.response));
+			}
+			params.userId = userId;
+		}
+		const response = await controller.handle(params);
 
 		return httpAdapter(response);
 	} catch (err: any) {
-		console.log(err)
+		console.log(err);
 		return httpAdapter(serverError());
 	}
 };

@@ -1,4 +1,4 @@
-import { HttpResponse, ServerlessHttpResponse } from "@/presentation/http";
+import { HttpResponse, ServerlessHttpResponse } from "@/presentation/protocols";
 
 export const httpAdapter = (
 	httpResponse: HttpResponse

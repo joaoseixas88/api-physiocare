@@ -1,5 +1,5 @@
 import { TokenGenerator } from "@/data/contracts/cryptography/token";
-import { sign, verify as check, JwtPayload } from "jsonwebtoken";
+import { JwtPayload, sign, verify as check } from "jsonwebtoken";
 
 export class JwtAdapter implements TokenGenerator{
 	constructor(
@@ -13,7 +13,7 @@ export class JwtAdapter implements TokenGenerator{
 		return token
 	}
 
-	verify(token: string): boolean  {
-		return !!check(token, this.secret);
+	verify(token: string): TokenGenerator.Result  {
+		return check(token, this.secret);
 	}
 }

@@ -1,10 +1,13 @@
 import { ServerError } from "@/presentation/errors/server-error";
 import { HttpResponse, HttpRequest } from "@/presentation/protocols";
+import { NotAuthorizedException } from "../errors/not-authorized-error";
 
-export const ok = (data: HttpRequest): HttpResponse => ({
+export const ok = (data?: HttpRequest): HttpResponse => ({
 	statusCode: 200,
 	data,
 });
+
+
 
 export const badRequest = (error?: Error | string): HttpResponse => {
 	if (error instanceof Error) {
@@ -19,6 +22,13 @@ export const badRequest = (error?: Error | string): HttpResponse => {
 		};
 	}
 };
+
+export const notAuthorized = (): HttpResponse => {
+	return {
+		statusCode: 401,
+		data: new NotAuthorizedException()
+	}
+}
 
 export const serverError = (): HttpResponse => ({
 	statusCode: 500,
