@@ -13,6 +13,5 @@ export const makeAddPatientValidation = (): Validation => {
 		validations.push(new MissingParamsValidation(param));
 	}
 	const validator = new ValidationComposite(validations);
-
 	return validator;
 };

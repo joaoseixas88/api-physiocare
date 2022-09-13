@@ -12,4 +12,15 @@ export const account = {
 			},
 		],
 	},
+	signIn: {
+		handler: `${path}/signin-by-email.handle`,
+		events: [
+			{
+				httpApi: {
+					path: "/account/signin",
+					method: "POST",
+				},
+			},
+		],
+	},
 };
