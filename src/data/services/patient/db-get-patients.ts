@@ -1,5 +1,5 @@
+import { GetPatientsRepository } from "@/data/contracts/repos/patient-repository";
 import { GetPatients } from "@/domain/features/patient/get-patients";
-import { GetPatientsRepository } from "../contracts/repos/patient-repository";
 
 export class DbGetPatients implements GetPatients{
 

@@ -1,4 +1,4 @@
-import { DbAddPatient } from "@/data/services/db-add-patient";
+import { DbAddPatient } from "@/data/services";
 import { UuidAdapter } from "@/infra/cryptography";
 import { PatientPrismaRepository } from "@/infra/repos/prisma/patient-prisma-repository";
 import { AddPatientController } from "@/presentation/controllers/add-patient-controller";

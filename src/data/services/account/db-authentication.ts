@@ -1,10 +1,10 @@
+import { AuthenticateUserRepository } from "@/data/contracts/repos";
 import { SignIn } from "@/domain/features/account/sign-in";
 import { AccessToken } from "@/domain/models/access-token";
 import { BcryptAdapter, JwtAdapter } from "@/infra/cryptography";
 import {
 	AuthenticationException
 } from "@/presentation/errors";
-import { AuthenticateUserRepository } from "../contracts/repos";
 
 export class Authentication implements SignIn {
 	constructor(

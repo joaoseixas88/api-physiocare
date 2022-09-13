@@ -24,3 +24,18 @@ export namespace GetPatientsRepository {
 
 	export type Result = Patient[];
 }
+
+export interface GetOnePatientRepository {
+	getOne(
+		params: GetOnePatientRepository.Params
+	): Promise<GetOnePatientRepository.Result>;
+}
+
+export namespace GetOnePatientRepository {
+	export type Params = {
+		userId: string;
+		patientId: string;
+	};
+
+	export type Result = Patient;
+}

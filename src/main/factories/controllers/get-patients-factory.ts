@@ -1,4 +1,4 @@
-import { DbGetPatients } from "@/data/services/db-get-patients"
+import { DbGetPatients } from "@/data/services"
 import { PatientPrismaRepository } from "@/infra/repos/prisma/patient-prisma-repository"
 import { GetPatientsController } from "@/presentation/controllers/get-patients-controller"
 import { Controller } from "@/presentation/protocols"

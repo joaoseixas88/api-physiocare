@@ -1,7 +1,7 @@
 import { AddPatient } from "@/domain/features/patient/add-patient";
 import { Patient } from "@/domain/models";
 import { UuidGenerator } from "@/data/contracts/cryptography";
-import { AddPatientRepository } from "../contracts/repos/patient-repository";
+import { AddPatientRepository } from "../../contracts/repos/patient-repository";
 
 export class DbAddPatient implements AddPatient {
 	constructor(
