@@ -1,6 +1,5 @@
 import { HttpResponse } from "./http";
 
-
 export interface Controller {
 	handle(params: Controller.Params): Promise<Controller.Result>;
 }
