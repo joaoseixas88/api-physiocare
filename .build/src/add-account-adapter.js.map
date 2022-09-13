@@ -1,1 +1,0 @@
-{"version":3,"file":"add-account-adapter.js","sourceRoot":"","sources":["../../src/add-account-adapter.ts"],"names":[],"mappings":";;;AACA,0EAAwE;AACxE,mFAAgF;AAGzE,IAAM,MAAM,GAA6B,UAAC,KAAK,EAAE,OAAO;IAC9D,IAAM,UAAU,GAAG,IAAA,iCAAc,GAAE,CAAC;IACpC,IAAM,OAAO,GAAG,IAAA,sCAAiB,EAAC,UAAU,EAAE,KAAK,EAAE,OAAO,CAAC,CAAC;IAC9D,OAAO,OAAO,CAAC;AAChB,CAAC,CAAC;AAJW,QAAA,MAAM,UAIjB"}

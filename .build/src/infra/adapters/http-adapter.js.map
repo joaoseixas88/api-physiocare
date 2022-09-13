@@ -1,1 +1,0 @@
-{"version":3,"file":"http-adapter.js","sourceRoot":"","sources":["../../../../src/infra/adapters/http-adapter.ts"],"names":[],"mappings":";;;AAEO,IAAM,WAAW,GAAG,UAC1B,YAA0B,IACE,OAAA,CAAC;IAC7B,UAAU,EAAE,YAAY,CAAC,UAAU;IACnC,IAAI,EAAE,IAAI,CAAC,SAAS,CAAC,YAAY,CAAC,IAAI,CAAC;IACvC,OAAO,EAAE,EAAE,cAAc,EAAE,kBAAkB,EAAE;CAC/C,CAAC,EAJ2B,CAI3B,CAAC;AANU,QAAA,WAAW,eAMrB"}
