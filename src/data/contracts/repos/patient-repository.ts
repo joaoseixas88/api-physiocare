@@ -37,5 +37,5 @@ export namespace GetOnePatientRepository {
 		patientId: string;
 	};
 
-	export type Result = Patient;
+	export type Result = Patient & { userId: string } | undefined
 }

@@ -9,5 +9,5 @@ export namespace GetOnePatient {
 		userId: string;
 		patientId: string;
 	};
-	export type Result = Patient;
+	export type Result = Patient | Error
 }
