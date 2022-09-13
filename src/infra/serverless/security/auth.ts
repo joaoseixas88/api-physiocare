@@ -12,8 +12,8 @@ export const authorizer = (authToken: string): Response | undefined => {
 	console.log(token);
 	if (
 		authArray[0] !== "Bearer" ||
-		authArray[1].length === 0 ||
-		authArray.length !== 2
+		authArray.length !== 2 ||
+		authArray[1].length === 0
 	) {
 		return {
 			response: "Invalid token format",

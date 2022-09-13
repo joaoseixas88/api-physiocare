@@ -2,6 +2,9 @@
 node_modules
 jspm_packages
 dist
+.webpack
+.build
+build
 
 # Serverless directories
 .serverless
