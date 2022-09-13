@@ -9,7 +9,6 @@ type Response = {
 export const authorizer = (authToken: string): Response | undefined => {
 	const authArray = authToken.split(" ");
 	const token = authArray[1];
-	console.log(token);
 	if (
 		authArray[0] !== "Bearer" ||
 		authArray.length !== 2 ||

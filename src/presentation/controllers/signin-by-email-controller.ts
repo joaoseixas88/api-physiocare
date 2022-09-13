@@ -20,7 +20,6 @@ export class SignInByEmailController implements Controller {
 		if (error) return badRequest(error)
 		const { email, password } = params;
 		const accessToken = await this.authentication.signIn({ email, password });
-		console.log(accessToken)
 		if (accessToken instanceof Error) return badRequest(accessToken);
 		return ok(accessToken);
 	}

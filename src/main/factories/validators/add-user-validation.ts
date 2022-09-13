@@ -19,8 +19,6 @@ export const makeAddUserValidation = (): ValidationComposite => {
 		validations.push(new MissingParamsValidation(param))
 	}
 	validations.push(new CompareFieldValidation('password','passwordConfirmation'))
-	// validations.push(new AuthorizationValidation())
-
 	const validation = new ValidationComposite(validations)
 
 	return validation
