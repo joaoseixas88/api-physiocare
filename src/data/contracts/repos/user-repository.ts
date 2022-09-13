@@ -31,7 +31,6 @@ export namespace AuthenticateUserRepository {
 	export type Params = {
 		email: string;
 	};
-
 	export type Result =
 		| {
 				id: string;

@@ -12,4 +12,15 @@ export const patient = {
 			},
 		],
 	},
+	getPatients: {
+		handler: `${path}/get-patients.handle`,
+		events: [
+			{
+				httpApi: {
+					path: "/patient",
+					method: "GET",
+				},
+			},
+		],
+	},
 };

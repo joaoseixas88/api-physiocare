@@ -9,6 +9,5 @@ export namespace GetPatients{
 	export type Params = {
 		userId: string
 	}
-
 	export type Result = Patient[]
 }
