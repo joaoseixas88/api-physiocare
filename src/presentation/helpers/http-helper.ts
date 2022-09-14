@@ -19,8 +19,9 @@ export const notFound = (error: Error): HttpResponse => ({
 
 export const badRequest = (error?: Error | string): HttpResponse => {
 	if (error instanceof Error) {
-		if(error.message === 'Not authorized') return notAuthorized()	
-		if(error.message.includes('not found'))	return notFound(error)
+		const message = error.message.toLowerCase()
+		if(message === 'not authorized') return notAuthorized()	
+		if(message.includes('not found'))	return notFound(error)
 		return {
 			statusCode: 400,
 			data: error ?? new Error("Something went wrong"),

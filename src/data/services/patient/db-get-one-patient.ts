@@ -1,7 +1,7 @@
 import { GetOnePatientRepository } from "@/data/contracts/repos/patient-repository";
-import { GetOnePatient } from "@/domain/features/patient/get-one-patients";
 import { NotFoundException } from "@/presentation/errors";
 import { NotAuthorizedException } from "@/presentation/errors/not-authorized-error";
+import { GetOnePatient } from '@/domain/features';
 
 export class DbGetOnePatient implements GetOnePatient {
 	constructor(private readonly getOnePatientRepo: GetOnePatientRepository) {}
@@ -10,6 +10,7 @@ export class DbGetOnePatient implements GetOnePatient {
 		if(!patient){
 			return new NotFoundException('patient')
 		}
+		
 		if(patient.userId !== params.userId){
 			return new NotAuthorizedException()
 		}

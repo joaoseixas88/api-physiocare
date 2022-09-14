@@ -27,3 +27,13 @@ export namespace DeleteAttendanceRepository {
 	export type Result = boolean 
 }
 
+export interface GetOneAttendanceRepository {
+	getOne(params: GetOneAttendanceRepository.Params): Promise<GetOneAttendanceRepository.Result>
+}
+export namespace GetOneAttendanceRepository {
+	export type Params = {
+		id: string
+	}
+	export type Result = Attendance | null 
+}
+

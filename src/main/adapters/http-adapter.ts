@@ -8,13 +8,15 @@ export const httpAdapter = (
 	if (httpResponse.data instanceof Error) {
 		data = {
 			statusCode: httpResponse.statusCode,
+			success:false,
 			error: true,
 			message: httpResponse.data.message, 
 		}
 	} else {
 		data = {
 			statusCode: httpResponse.statusCode,
-			data: httpResponse.data,
+			data: httpResponse.data,			
+			success:true,
 			error: false
 		}
 	}

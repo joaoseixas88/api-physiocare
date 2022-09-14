@@ -1,10 +1,12 @@
 import { AddAttendanceRepository } from "@/data/contracts/repos/attendance-repository";
 import { dbClient } from "@/presentation/helpers";
-import { DeleteAttendanceRepository } from "../../../data/contracts/repos/attendance-repository";
+import { DeleteAttendanceRepository, GetOneAttendanceRepository } from '../../../data/contracts/repos/attendance-repository';
+import { attendance } from '../../serverless/routes/attendance';
 
 export class AttendancePrismaRepository
-	implements AddAttendanceRepository, DeleteAttendanceRepository
+	implements AddAttendanceRepository, DeleteAttendanceRepository, GetOneAttendanceRepository
 {
+	
 	async add(params: AddAttendanceRepository.Params): Promise<boolean> {
 		const attendance = await dbClient.attendances.create({
 			data: {
@@ -28,5 +30,14 @@ export class AttendancePrismaRepository
 		} catch (error: any) {
 			return error;
 		}
+	}
+
+	async getOne(params: GetOneAttendanceRepository.Params): Promise<GetOneAttendanceRepository.Result> {
+		const attendance = await dbClient.attendances.findUnique({
+			where: {
+				id: params.id
+			}
+		})
+		return attendance
 	}
 }

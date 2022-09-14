@@ -1,5 +1,5 @@
 import { AccessToken } from "@/domain/models/access-token"
-import { AuthenticationException } from "../errors"
+import { AuthenticationException } from "../../errors"
 
 export interface SignIn{
 	signIn(params: SignIn.Params): Promise<SignIn.Result>
