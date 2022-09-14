@@ -1,5 +1,5 @@
 import { GetPatients } from "@/domain/features/patient/get-patients";
-import { Validation } from "@/validation/validation";
+import { Validation } from "@/validation/protocols";
 import { Controller } from "@/presentation/protocols";
 import { ok, badRequest } from "@/presentation/helpers";
 

@@ -1,5 +1,5 @@
-import { Validation } from "@/validation/validation";
 import { MissingParamsValidation, ValidationComposite } from "@/validation/validators";
+import { Validation } from '@/validation/protocols';
 
 
 export const makeSigninByEmailValidation = (): Validation => {

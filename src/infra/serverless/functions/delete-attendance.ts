@@ -1,7 +1,6 @@
 import { APIGatewayProxyHandlerV2 } from "aws-lambda";
-import { serverlessAdapter } from "../../../main/adapters/serverless-adapter";
-import { DeleteAttendanceFactory } from '../../../main/factories/controllers/delete-attendance-factory';
-
+import { serverlessAdapter } from "@/main/adapters";
+import { DeleteAttendanceFactory } from "@/main/factories";
 
 export const handle: APIGatewayProxyHandlerV2 = async (event, context) => {
 	const controller = DeleteAttendanceFactory();

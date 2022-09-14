@@ -1,7 +1,7 @@
-import { AddPatient } from "@/domain/features/patient/add-patient";
+import { AddPatient } from "@/domain/features";
 import { AddPatientDTO } from "@/domain/models";
-import { badRequest, created, ok } from "../../helpers";
-import { Controller } from "../../protocols";
+import { badRequest, created, ok } from "@/presentation/helpers";
+import { Controller } from "@/presentation/protocols";
 import { Validation } from '@/validation/protocols';
 
 export class AddPatientController implements Controller {

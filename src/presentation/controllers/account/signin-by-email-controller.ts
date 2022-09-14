@@ -1,5 +1,5 @@
 import { Authentication } from "@/data/services";
-import { Validation } from "@/validation/validation";
+import { Validation } from "@/validation/protocols";
 import { Controller } from "@/presentation/protocols";
 import { badRequest, ok } from "@/presentation/helpers";
 

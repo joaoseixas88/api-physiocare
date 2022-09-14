@@ -1,4 +1,4 @@
-import { Encrypter } from "@/data/contracts/cryptography/encrypter";
+import { Encrypter } from "@/data/contracts/cryptography";
 import { hash, compare } from "bcrypt";
 
 export class BcryptAdapter implements Encrypter{

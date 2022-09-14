@@ -1,6 +1,6 @@
-import { GetPatientsFactory } from "@/main/factories/controllers/get-patients-factory";
+import { GetPatientsFactory } from "@/main/factories";
 import { APIGatewayProxyHandlerV2 } from "aws-lambda";
-import { serverlessAdapter } from "../../../main/adapters/serverless-adapter";
+import { serverlessAdapter } from "@/main/adapters";
 
 
 export const handle: APIGatewayProxyHandlerV2 = async (event, context) => {

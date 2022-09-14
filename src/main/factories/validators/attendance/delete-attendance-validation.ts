@@ -1,4 +1,4 @@
-import { Validation } from "../../../../validation/protocols/validation";
+import { Validation } from "@/validation/protocols";
 import {
 	ValidationComposite,
 	AuthorizationValidation,

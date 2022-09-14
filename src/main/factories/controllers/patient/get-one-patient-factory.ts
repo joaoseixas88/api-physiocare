@@ -1,8 +1,8 @@
 import { DbGetOnePatient } from "@/data/services";
-import { PatientPrismaRepository } from "@/infra/repos/prisma/patient-prisma-repository";
+import { PatientPrismaRepository } from "@/infra/repos";
 import { GetOnePatientController } from "@/presentation/controllers";
 import { Controller } from "@/presentation/protocols";
-import { makeGetOnePatientValidation } from "../validators/patient/get-one-patient-validation";
+import { makeGetOnePatientValidation } from "@/main/factories";
 
 export const GetOnePatientFactory = (): Controller => {
 	const validator = makeGetOnePatientValidation();

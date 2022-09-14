@@ -1,7 +1,6 @@
 import { AddAttendanceRepository } from "@/data/contracts/repos/attendance-repository";
 import { dbClient } from "@/presentation/helpers";
-import { DeleteAttendanceRepository, GetOneAttendanceRepository } from '../../../data/contracts/repos/attendance-repository';
-import { attendance } from '../../serverless/routes/attendance';
+import { DeleteAttendanceRepository, GetOneAttendanceRepository } from '@/data/contracts/repos';
 
 export class AttendancePrismaRepository
 	implements AddAttendanceRepository, DeleteAttendanceRepository, GetOneAttendanceRepository

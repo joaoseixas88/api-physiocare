@@ -1,6 +1,6 @@
-import { SigninByEmailFactory } from "@/main/factories/controllers/signin-by-email";
+import { SigninByEmailFactory } from "@/main/factories";
 import { APIGatewayProxyHandlerV2 } from "aws-lambda";
-import { serverlessAdapter } from "../../../main/adapters/serverless-adapter";
+import { serverlessAdapter } from "@/main/adapters";
 
 
 export const handle: APIGatewayProxyHandlerV2 = async (event, context) => {

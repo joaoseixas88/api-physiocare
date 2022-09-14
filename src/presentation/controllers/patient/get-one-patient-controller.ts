@@ -1,7 +1,7 @@
 import { GetOnePatient } from "@/domain/features";
 import { badRequest, ok } from "@/presentation/helpers";
 import { Controller } from "@/presentation/protocols";
-import { Validation } from "@/validation/validation";
+import { Validation } from "@/validation/protocols";
 
 export class GetOnePatientController implements Controller {
 	constructor(

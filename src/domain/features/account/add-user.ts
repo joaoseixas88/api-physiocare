@@ -1,4 +1,4 @@
-import { AuthenticationException } from "@/domain/features/errors";
+import { AuthenticationException } from "@/domain/errors";
 import { AddUserDTO } from "@/domain/models";
 
 export interface AddUser {

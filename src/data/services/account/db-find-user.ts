@@ -1,5 +1,5 @@
 import { FindUser } from "@/domain/features/account/find-user";
-import { FindUserRepository } from "../contracts/repos";
+import { FindUserRepository } from "@/data/contracts/repos";
 
 export class FindUserService implements FindUser {
 	constructor(private readonly repository: FindUserRepository) {}

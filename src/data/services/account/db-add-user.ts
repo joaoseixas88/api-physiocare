@@ -1,14 +1,13 @@
 import { AddUser } from "@/domain/features/account/add-user";
 import { AuthenticationException } from "@/presentation/errors";
-import { BcryptAdapter } from "../../../infra/cryptography/bcrypt-adapter";
-import { UuidGenerator } from "../../contracts/cryptography/uuid-generator";
-import { AddUserRepository, FindUserRepository } from "../../contracts/repos";
+import { AddUserRepository, FindUserRepository } from "@/data/contracts/repos";
+import { Encrypter, UuidGenerator } from '@/data/contracts/cryptography';
 
 export class DbAddUser implements AddUser {
 	constructor(
 		private readonly repository: AddUserRepository & FindUserRepository,
-		private readonly uuidGenerator: UuidGenerator,
-		private readonly crypto: BcryptAdapter
+		private readonly uidAdapter: UuidGenerator,
+		private readonly crypto: Encrypter
 	) {}
 	async add(params: AddUser.Params): Promise<AddUser.Result> {
 		const userData = await this.repository.find({
@@ -20,7 +19,7 @@ export class DbAddUser implements AddUser {
 
 		const hashPassword = await this.crypto.encrypt(params.password)
 
-		const id = this.uuidGenerator.generate()
+		const id = this.uidAdapter.generate()
 		const user = await this.repository.add({
 			...params,
 			id,

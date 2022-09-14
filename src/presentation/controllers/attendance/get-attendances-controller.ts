@@ -1,7 +1,7 @@
 import { GetAllAttendances } from "@/domain/features";
 import { Validation } from "@/validation/protocols";
-import { Controller } from "../";
-import { badRequest, ok } from "../..";
+import { Controller } from "@/presentation/protocols";
+import { badRequest, ok } from "@/presentation/helpers";
 
 type IRequest = {
 	userId: string;

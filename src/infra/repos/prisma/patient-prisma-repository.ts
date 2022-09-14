@@ -2,7 +2,7 @@ import {
 	AddPatientRepository,
 	GetOnePatientRepository,
 	GetPatientsRepository,
-} from "@/data/contracts/repos/patient-repository";
+} from "@/data/contracts/repos";
 import { dbClient } from "@/presentation/helpers";
 
 export class PatientPrismaRepository

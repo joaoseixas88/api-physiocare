@@ -1,4 +1,3 @@
-import { patient } from '../../../infra/serverless/routes/patient';
 
 export interface DeleteAttendance {
 	delete(params: DeleteAttendance.Params): Promise<DeleteAttendance.Result>

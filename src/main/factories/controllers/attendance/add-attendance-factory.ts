@@ -1,11 +1,9 @@
-import { DbGetOnePatient } from "@/data/services";
-import { DbAddAttendance } from "@/data/services/attendance/db-add-attendance";
+import { DbGetOnePatient,DbAddAttendance } from "@/data/services";
 import { UuidAdapter } from "@/infra/cryptography";
-import { AttendancePrismaRepository } from "@/infra/repos/prisma/attendance-prisma-repository";
-import { PatientPrismaRepository } from "@/infra/repos/prisma/patient-prisma-repository";
+import { AttendancePrismaRepository, PatientPrismaRepository } from "@/infra/repos";
 import { AddAttendanceController } from "@/presentation/controllers";
 import { Controller } from "@/presentation/protocols";
-import { makeAddAttendanceValidation } from "../validators/attendance/add-attendance-validation";
+import { makeAddAttendanceValidation } from '@/main/factories';
 
 export const AddAttendanceFactory = ():Controller => {
 	const getOnePatientRepo = new PatientPrismaRepository()

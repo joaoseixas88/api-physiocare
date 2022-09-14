@@ -1,9 +1,8 @@
-import { DeleteAttendance, GetOnePatient } from "@/domain/features";
-import { NotAuthorizedException, NotFoundException } from '@/presentation/errors';
 import {
-	GetOneAttendanceRepository,
-	DeleteAttendanceRepository,
+	DeleteAttendanceRepository, GetOneAttendanceRepository
 } from "@/data/contracts/repos";
+import { DeleteAttendance, GetOnePatient } from "@/domain/features";
+import { NotFoundException } from '@/presentation/errors';
 
 export class DbDeleteAttendance implements DeleteAttendance {
 	constructor(

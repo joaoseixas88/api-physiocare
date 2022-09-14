@@ -2,7 +2,6 @@ import { UuidGenerator } from "@/data/contracts/cryptography";
 import { AddAttendanceRepository } from "@/data/contracts/repos/attendance-repository";
 import { AddAttendance } from "@/domain/features/attendance/add-attendance";
 import { GetOnePatient } from "@/domain/features/patient/get-one-patient";
-import { AuthenticationException } from "@/presentation/errors";
 
 export class DbAddAttendance implements AddAttendance {
 	constructor(

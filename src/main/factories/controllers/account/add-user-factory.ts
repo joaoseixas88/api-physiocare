@@ -1,10 +1,8 @@
 import { DbAddUser } from "@/data/services"
 import { UuidAdapter } from "@/infra/cryptography"
-import { UserPrismaRepository } from "@/infra/repos/prisma/user-prisma-repository"
+import { UserPrismaRepository } from "@/infra/repos"
 import { AddUserController, Controller } from "@/presentation/controllers"
-import { makeAuthService } from "../auth-service-factory"
-import { makeBcrypt } from "../bcrypt-factory"
-import { makeAddUserValidation } from "../validators/account/add-user-validation"
+import { makeAddUserValidation,makeBcrypt, makeAuthService } from "@/main/factories"
 
 
 export const AddUserFactory = (): Controller => {

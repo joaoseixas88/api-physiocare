@@ -1,6 +1,6 @@
 import { AddAttendance } from "@/domain/features/attendance/add-attendance";
 import { AddAttendanceDTO } from "@/domain/models";
-import { badRequest, created, ok } from "@/presentation/helpers";
+import { badRequest, created } from "@/presentation/helpers";
 import { Validation } from "@/validation/protocols";
 import { Controller } from "..";
 

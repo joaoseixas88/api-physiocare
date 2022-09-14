@@ -1,4 +1,4 @@
-import { AddPatientDTO, Patient } from '@/domain/models'
+import { AddPatientDTO } from '@/domain/models'
 
 export interface AddPatient{
 	add(params: AddPatient.Params): Promise<AddPatient.Result>

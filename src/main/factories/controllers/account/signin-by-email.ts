@@ -4,7 +4,7 @@ import { UserPrismaRepository } from "@/infra/repos";
 import { config } from "@/main/config";
 import { SignInByEmailController } from "@/presentation/controllers";
 import { Controller } from "@/presentation/protocols";
-import { makeSigninByEmailValidation } from "../validators/account/signin-by-email-validation";
+import { makeSigninByEmailValidation } from "@/main/factories";
 
 export const SigninByEmailFactory = (): Controller => {
 	const authRepo = new UserPrismaRepository();

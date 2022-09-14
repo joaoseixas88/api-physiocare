@@ -1,9 +1,8 @@
 import {
 	AddUserRepository,
 	AuthenticateUserRepository,
-	FindUserRepository,
+	FindUserRepository
 } from "@/data/contracts/repos";
-import { Patient, User } from "@/domain/models";
 import { dbClient } from "@/presentation/helpers";
 
 export class UserPrismaRepository
