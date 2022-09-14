@@ -1,12 +1,10 @@
 import { Authentication } from "@/data/services";
-import { AddUser } from "@/domain/features/account/add-user";
+import { AddUser } from "@/domain/features";
 import { AddUserDTO } from "@/domain/models";
-import { badRequest, notAuthorized, ok } from "@/presentation/helpers";
+import { badRequest, ok } from "@/presentation/helpers";
 import { Validation } from "src/validation";
-import { MissingParamsException } from "../errors";
-import { InvalidParamsException } from "../errors/invalid-params-error";
-import { HttpResponse } from "../protocols";
-import { Controller } from "../protocols/controller";
+import { HttpResponse } from "../../protocols";
+import { Controller } from "../../protocols/controller";
 
 
 

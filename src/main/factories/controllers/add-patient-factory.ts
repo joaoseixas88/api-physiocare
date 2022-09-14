@@ -1,7 +1,7 @@
 import { DbAddPatient } from "@/data/services";
 import { UuidAdapter } from "@/infra/cryptography";
 import { PatientPrismaRepository } from "@/infra/repos/prisma/patient-prisma-repository";
-import { AddPatientController } from "@/presentation/controllers/add-patient-controller";
+import { AddPatientController } from "@/presentation/controllers";
 import { Controller } from "@/presentation/protocols";
 import { makeAddPatientValidation } from "../validators/add-patient-validation";
 

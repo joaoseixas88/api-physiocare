@@ -6,7 +6,7 @@ export const patient = {
 		events: [
 			{
 				httpApi: {
-					path: "/patient/create",
+					path: "/patient/new",
 					method: "POST",
 				},
 			},

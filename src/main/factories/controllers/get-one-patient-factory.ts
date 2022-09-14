@@ -1,6 +1,6 @@
 import { DbGetOnePatient } from "@/data/services";
 import { PatientPrismaRepository } from "@/infra/repos/prisma/patient-prisma-repository";
-import { GetOnePatientController } from "@/presentation/controllers/get-one-patient-controller";
+import { GetOnePatientController } from "@/presentation/controllers";
 import { Controller } from "@/presentation/protocols";
 import { makeGetOnePatientValidation } from "../validators/get-one-patient-validation";
 

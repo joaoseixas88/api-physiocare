@@ -2,7 +2,7 @@ import { Authentication } from "@/data/services";
 import { BcryptAdapter, JwtAdapter } from "@/infra/cryptography";
 import { UserPrismaRepository } from "@/infra/repos";
 import { config } from "@/main/config";
-import { SignInByEmailController } from "@/presentation/controllers/signin-by-email-controller";
+import { SignInByEmailController } from "@/presentation/controllers";
 import { Controller } from "@/presentation/protocols";
 import { makeSigninByEmailValidation } from "../validators/signin-by-email-validation";
 

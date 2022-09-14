@@ -1,7 +1,7 @@
 import { Authentication } from "@/data/services";
 import { Validation } from "@/validation/validation";
-import { badRequest, ok } from "../helpers";
-import { Controller } from "../protocols";
+import { Controller } from "@/presentation/protocols";
+import { badRequest, ok } from "@/presentation/helpers";
 
 interface IRequest {
 	email: string;

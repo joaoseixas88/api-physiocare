@@ -1,7 +1,7 @@
 import { GetPatients } from "@/domain/features/patient/get-patients";
 import { Validation } from "@/validation/validation";
-import { badRequest, ok } from "../helpers";
-import { Controller } from "../protocols";
+import { Controller } from "@/presentation/protocols";
+import { ok, badRequest } from "@/presentation/helpers";
 
 interface IRequest {
 	userId: string;

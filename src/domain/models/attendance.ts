@@ -3,3 +3,8 @@ export type Attendance = {
   created_at: Date
 	patientId: string
 }
+
+export type AddAttendanceDTO = {
+	patientId: string
+	userId: string
+}
