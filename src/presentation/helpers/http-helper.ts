@@ -14,8 +14,7 @@ export const created = (data?: HttpRequest): HttpResponse => ({
 
 export const badRequest = (error?: Error | string): HttpResponse => {
 	if (error instanceof Error) {
-		if(error.message === 'Not authorized') return notAuthorized()
-		
+		if(error.message === 'Not authorized') return notAuthorized()		
 		return {
 			statusCode: 400,
 			data: error ?? new Error("Something went wrong"),
