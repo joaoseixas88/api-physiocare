@@ -8,3 +8,9 @@ export type AddAttendanceDTO = {
 	patientId: string
 	userId: string
 }
+
+export type DeleteAttendanceDTO = {
+	patientId: string
+	userId: string
+	attendanceId: string
+}

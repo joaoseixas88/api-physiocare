@@ -18,12 +18,12 @@ export namespace AddAttendanceRepository {
 
 
 export interface DeleteAttendanceRepository {
-	getAll(params: DeleteAttendanceRepository.Params): Promise<DeleteAttendanceRepository.Result>
+	delete(params: DeleteAttendanceRepository.Params): Promise<DeleteAttendanceRepository.Result>
 }
 export namespace DeleteAttendanceRepository {
 	export type Params = {
 		id: string
 	}
-	export type Result = boolean
+	export type Result = boolean 
 }
 

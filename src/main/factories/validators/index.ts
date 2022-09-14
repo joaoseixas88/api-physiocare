@@ -1,2 +1,4 @@
-export * from './account/add-user-validation'
+export * from './account'
+export * from './attendance'
+export * from './patient'
 export * from './attendance'
