@@ -5,7 +5,7 @@ import { AddAttendanceController } from "@/presentation/controllers";
 import { Controller } from "@/presentation/protocols";
 import { makeAddAttendanceValidation } from '@/main/factories';
 
-export const AddAttendanceFactory = ():Controller => {
+export const makeAddAttendanceFactory = ():Controller => {
 	const getOnePatientRepo = new PatientPrismaRepository()
 	const repo = new AttendancePrismaRepository()
 	const getPatientService = new DbGetOnePatient(getOnePatientRepo)

@@ -5,7 +5,7 @@ import { AddPatientController } from "@/presentation/controllers";
 import { Controller } from "@/presentation/protocols";
 import { makeAddPatientValidation } from "@/main/factories";
 
-export const AddPatientFactory = (): Controller => {
+export const makeAddPatientFactory = (): Controller => {
 	const patientRepository = new PatientPrismaRepository();
 	const uuidGenerator = new UuidAdapter();
 	const validations = makeAddPatientValidation();

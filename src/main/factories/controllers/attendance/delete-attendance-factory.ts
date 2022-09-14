@@ -6,7 +6,7 @@ import { makeDeleteAttendanceValidation } from '@/main/factories'
 
 
 
-export const DeleteAttendanceFactory = (): Controller => {
+export const makeDeleteAttendanceFactory = (): Controller => {
 	const patientRepo = new PatientPrismaRepository
 	const attendanceRepository = new AttendancePrismaRepository()
 	const getOnePatientService = new DbGetOnePatient(patientRepo)

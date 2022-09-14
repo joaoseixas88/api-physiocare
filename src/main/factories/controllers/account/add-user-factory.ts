@@ -5,7 +5,7 @@ import { AddUserController, Controller } from "@/presentation/controllers"
 import { makeAddUserValidation,makeBcrypt, makeAuthService } from "@/main/factories"
 
 
-export const AddUserFactory = (): Controller => {
+export const makeAddUserFactory = (): Controller => {
 	const repository = new UserPrismaRepository()
 	const uuidGenerator = new UuidAdapter()
 	const crypto = makeBcrypt()

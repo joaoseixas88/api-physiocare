@@ -5,7 +5,7 @@ import { PatientPrismaRepository } from '@/infra/repos';
 import { makeGetAttendancesValidation } from '@/main/factories';
 
 
-export const GetAttendancesFactory = (): Controller => {
+export const makeGetAttendancesFactory = (): Controller => {
 	const repo = new PatientPrismaRepository()
 	const getPatientService = new DbGetOnePatient(repo)
 	const service = new DbGetAllAttendances(getPatientService)

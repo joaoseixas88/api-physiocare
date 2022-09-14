@@ -6,7 +6,7 @@ import { SignInByEmailController } from "@/presentation/controllers";
 import { Controller } from "@/presentation/protocols";
 import { makeSigninByEmailValidation } from "@/main/factories";
 
-export const SigninByEmailFactory = (): Controller => {
+export const makeSigninByEmailFactory = (): Controller => {
 	const authRepo = new UserPrismaRepository();
 	const jwtAdapter = new JwtAdapter(config.jwt);
 	const bcryptAdapter = new BcryptAdapter(10);

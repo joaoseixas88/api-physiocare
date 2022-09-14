@@ -5,7 +5,7 @@ import { Controller } from "@/presentation/protocols"
 import { makeGetPatientsValidation } from "@/main/factories"
 
 
-export const GetPatientsFactory = (): Controller => {	
+export const makeGetPatientsFactory = (): Controller => {	
 	const repository = new PatientPrismaRepository()
 	const service = new DbGetPatients(repository)
 	const validator = makeGetPatientsValidation()
