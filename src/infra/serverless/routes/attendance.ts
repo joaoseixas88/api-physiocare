@@ -22,5 +22,16 @@ export const attendance = {
 				},
 			},
 		],
+	},
+	delete: {
+		handler: `${path}/delete-attendance.handle`,
+		events: [
+			{
+				httpApi: {
+					path: "/attendance/delete",
+					method: "DELETE",
+				},
+			},
+		],
 	}
 };

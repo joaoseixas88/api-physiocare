@@ -1,6 +1,5 @@
-import { ServerError } from "@/presentation/errors/server-error";
 import { HttpResponse, HttpRequest } from "@/presentation/protocols";
-import { NotAuthorizedException } from "../errors/not-authorized-error";
+import { NotFoundException, NotAuthorizedException, ServerError } from '@/presentation/errors';
 
 export const ok = (data?: HttpRequest): HttpResponse => ({
 	statusCode: 200,
@@ -12,9 +11,16 @@ export const created = (data?: HttpRequest): HttpResponse => ({
 	data
 })
 
+export const notFound = (error: Error): HttpResponse => ({ 
+ 	statusCode: 404,
+	data: error
+})
+
+
 export const badRequest = (error?: Error | string): HttpResponse => {
 	if (error instanceof Error) {
-		if(error.message === 'Not authorized') return notAuthorized()		
+		if(error.message === 'Not authorized') return notAuthorized()	
+		if(error.message.includes('not found'))	return notFound(error)
 		return {
 			statusCode: 400,
 			data: error ?? new Error("Something went wrong"),
