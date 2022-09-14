@@ -1,6 +1,6 @@
 import { AddAttendance } from "@/domain/features/attendance/add-attendance";
 import { AddAttendanceDTO } from "@/domain/models";
-import { badRequest, ok } from "@/presentation/helpers";
+import { badRequest, created, ok } from "@/presentation/helpers";
 import { Validation } from "@/validation/validation";
 import { Controller } from "..";
 
@@ -21,6 +21,6 @@ export class AddAttendanceController implements Controller {
 			userId: params.userId,
 		});
 		if (result instanceof Error) return badRequest(result);
-		return ok();
+		return created();
 	}
 }

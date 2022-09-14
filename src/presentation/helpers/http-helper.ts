@@ -7,7 +7,10 @@ export const ok = (data?: HttpRequest): HttpResponse => ({
 	data,
 });
 
-
+export const created = (data?: HttpRequest): HttpResponse => ({
+	statusCode: 201,
+	data
+})
 
 export const badRequest = (error?: Error | string): HttpResponse => {
 	if (error instanceof Error) {

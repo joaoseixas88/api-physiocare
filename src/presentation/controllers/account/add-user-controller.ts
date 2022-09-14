@@ -1,7 +1,7 @@
 import { Authentication } from "@/data/services";
 import { AddUser } from "@/domain/features";
 import { AddUserDTO } from "@/domain/models";
-import { badRequest, ok } from "@/presentation/helpers";
+import { badRequest, created } from "@/presentation/helpers";
 import { Validation } from "src/validation";
 import { HttpResponse } from "../../protocols";
 import { Controller } from "../../protocols/controller";
@@ -50,6 +50,6 @@ export class AddUserController implements Controller {
 			accessToken
 		};
 
-		return ok(responseUser);
+		return created(responseUser);
 	}
 }
