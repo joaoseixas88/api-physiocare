@@ -1,9 +1,9 @@
-import { Validation } from "@/validation/validation";
+import { Validation } from "@/validation/protocols";
 import {
 	MissingParamsValidation,
 	ValidationComposite,
+	AuthorizationValidation
 } from "@/validation/validators";
-import { AuthorizationValidation } from "@/validation/validators/authorization";
 
 export const makeAddPatientValidation = (): Validation => {
 	const validations = [];

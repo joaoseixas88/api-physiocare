@@ -5,7 +5,7 @@ import { AttendancePrismaRepository } from "@/infra/repos/prisma/attendance-pris
 import { PatientPrismaRepository } from "@/infra/repos/prisma/patient-prisma-repository";
 import { AddAttendanceController } from "@/presentation/controllers";
 import { Controller } from "@/presentation/protocols";
-import { makeAddAttendanceValidation } from "../validators/add-attendance-validation";
+import { makeAddAttendanceValidation } from "../validators/attendance/add-attendance-validation";
 
 export const AddAttendanceFactory = ():Controller => {
 	const getOnePatientRepo = new PatientPrismaRepository()

@@ -1,3 +1,5 @@
+import { Attendance } from "@/domain/models";
+
 export interface AddAttendanceRepository {
 	add(
 		params: AddAttendanceRepository.Params
@@ -13,3 +15,16 @@ export namespace AddAttendanceRepository {
 
 	export type Result = boolean;
 }
+
+
+// export interface GetAllAttendancesRepository {
+// 	getAll(params: GetAllAttendancesRepository.Params): Promise<GetAllAttendancesRepository.Result>
+// }
+// export namespace GetAllAttendancesRepository {
+// 	export type Params = {
+// 		userId: string
+// 		patientId: string
+// 	}
+// 	export type Result = Attendance[] | undefined
+// }
+

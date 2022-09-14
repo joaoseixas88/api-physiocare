@@ -2,6 +2,7 @@ import { AddAttendanceRepository } from "@/data/contracts/repos/attendance-repos
 import { dbClient } from "@/presentation/helpers";
 
 export class AttendancePrismaRepository implements AddAttendanceRepository {
+	
 	async add(params: AddAttendanceRepository.Params): Promise<boolean> {
 		const attendance = await dbClient.attendances.create({
 			data: {
@@ -13,4 +14,6 @@ export class AttendancePrismaRepository implements AddAttendanceRepository {
 
 		return !!attendance;
 	}
+
+
 }

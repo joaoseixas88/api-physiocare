@@ -1,5 +1,5 @@
 import { NotAuthorizedException } from "@/presentation/errors/not-authorized-error";
-import { Validation } from "../validation";
+import { Validation } from "../protocols/validation";
 
 export class AuthorizationValidation implements Validation {
 	userId: string = 'userId'

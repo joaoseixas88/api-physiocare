@@ -1,7 +1,5 @@
-import { Validation } from "@/validation/validation";
-import { MissingParamsValidation, ValidationComposite } from "@/validation/validators";
-import { AuthorizationValidation } from "@/validation/validators/authorization";
-import { CompareFieldValidation } from "@/validation/validators/compare-fields";
+import { Validation } from "@/validation/protocols";
+import { CompareFieldValidation, MissingParamsValidation, ValidationComposite } from "@/validation/validators";
 
 
 

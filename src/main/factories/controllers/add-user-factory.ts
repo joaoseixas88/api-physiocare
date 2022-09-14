@@ -4,7 +4,7 @@ import { UserPrismaRepository } from "@/infra/repos/prisma/user-prisma-repositor
 import { AddUserController, Controller } from "@/presentation/controllers"
 import { makeAuthService } from "../auth-service-factory"
 import { makeBcrypt } from "../bcrypt-factory"
-import { makeAddUserValidation } from "../validators/add-user-validation"
+import { makeAddUserValidation } from "../validators/account/add-user-validation"
 
 
 export const AddUserFactory = (): Controller => {

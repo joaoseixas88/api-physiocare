@@ -2,7 +2,7 @@ import { DbGetPatients } from "@/data/services"
 import { PatientPrismaRepository } from "@/infra/repos/prisma/patient-prisma-repository"
 import { GetPatientsController } from "@/presentation/controllers"
 import { Controller } from "@/presentation/protocols"
-import { makeGetPatientsValidation } from "../validators/get-patients-validation"
+import { makeGetPatientsValidation } from "../validators/patient/get-patients-validation"
 
 
 export const GetPatientsFactory = (): Controller => {	

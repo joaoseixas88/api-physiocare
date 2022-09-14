@@ -1,6 +1,5 @@
-import { Validation } from "@/validation/validation";
-import { MissingParamsValidation, ValidationComposite } from "@/validation/validators";
-import { AuthorizationValidation } from "@/validation/validators/authorization";
+import { Validation } from "@/validation/protocols";
+import { AuthorizationValidation, MissingParamsValidation, ValidationComposite } from '@/validation/validators';
 
 
 export const makeAddAttendanceValidation  = (): Validation => {

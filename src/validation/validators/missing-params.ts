@@ -1,5 +1,5 @@
 import { MissingParamsException } from "@/presentation/errors";
-import { Validation } from "../validation";
+import { Validation } from "../protocols/validation";
 
 export class MissingParamsValidation implements Validation {
 	constructor(private readonly fieldName: string) {}

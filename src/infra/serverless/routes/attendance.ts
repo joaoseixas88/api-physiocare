@@ -11,5 +11,16 @@ export const attendance = {
 				},
 			},
 		],
+	},
+	getAll: {
+		handler: `${path}/get-attendances.handle`,
+		events: [
+			{
+				httpApi: {
+					path: "/attendance/{patientId}",
+					method: "GET",
+				},
+			},
+		],
 	}
 };

@@ -12,11 +12,9 @@ export class DbAddAttendance implements AddAttendance {
 	) {}
 
 	async add(params: AddAttendance.Params): Promise<AddAttendance.Result> {
-		const patient = await this.getPatientService.getOne({
-			patientId: params.patientId,
-			userId: params.userId,
-		});
+		const patient = await this.getPatientService.getOne(params);
 		if (patient instanceof Error) return patient;
+		
 
 		const id = this.uuidGenerator.generate();
 

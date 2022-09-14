@@ -2,9 +2,9 @@ import { Authentication } from "@/data/services";
 import { AddUser } from "@/domain/features";
 import { AddUserDTO } from "@/domain/models";
 import { badRequest, created } from "@/presentation/helpers";
-import { Validation } from "src/validation";
-import { HttpResponse } from "../../protocols";
-import { Controller } from "../../protocols/controller";
+import { Controller } from '@/presentation/controllers';
+import { Validation } from "@/validation/protocols";
+import { HttpResponse } from "@/presentation/protocols";
 
 
 
