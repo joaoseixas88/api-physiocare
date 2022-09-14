@@ -17,14 +17,13 @@ export namespace AddAttendanceRepository {
 }
 
 
-// export interface GetAllAttendancesRepository {
-// 	getAll(params: GetAllAttendancesRepository.Params): Promise<GetAllAttendancesRepository.Result>
-// }
-// export namespace GetAllAttendancesRepository {
-// 	export type Params = {
-// 		userId: string
-// 		patientId: string
-// 	}
-// 	export type Result = Attendance[] | undefined
-// }
+export interface DeleteAttendanceRepository {
+	getAll(params: DeleteAttendanceRepository.Params): Promise<DeleteAttendanceRepository.Result>
+}
+export namespace DeleteAttendanceRepository {
+	export type Params = {
+		id: string
+	}
+	export type Result = boolean
+}
 
