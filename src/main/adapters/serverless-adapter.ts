@@ -29,7 +29,7 @@ export const serverlessAdapter = async (
 
 		const authorization = headers.authorization;
 		if (authorization) {
-			const auth = authorizer(authorization);
+			const auth = await authorizer(authorization);
 			const userId = auth?.userId;
 			if (!userId) {
 				return httpAdapter(badRequest(auth?.response));

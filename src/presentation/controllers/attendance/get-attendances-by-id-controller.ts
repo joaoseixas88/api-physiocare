@@ -1,4 +1,4 @@
-import { GetAllAttendances } from "@/domain/features";
+import { GetAllAttendancesById } from "@/domain/features";
 import { Validation } from "@/validation/protocols";
 import { Controller } from "@/presentation/protocols";
 import { badRequest, ok } from "@/presentation/helpers";
@@ -8,9 +8,9 @@ type IRequest = {
 	patientId: string;
 };
 
-export class GetAllAttendancesController implements Controller {
+export class GetAllAttendancesByIdController implements Controller {
 	constructor(
-		private readonly service: GetAllAttendances,
+		private readonly service: GetAllAttendancesById,
 		private readonly validator: Validation
 	) {}
 
@@ -19,7 +19,7 @@ export class GetAllAttendancesController implements Controller {
 	): Promise<Controller.Result> {
 		const error = this.validator.validate(params);
 		if (error) return badRequest(error);
-
+		
 		const attendances = await this.service.get(params);
 		if (attendances instanceof Error) return badRequest(attendances);
 
