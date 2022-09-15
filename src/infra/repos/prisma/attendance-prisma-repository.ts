@@ -12,6 +12,7 @@ export class AttendancePrismaRepository
 				id: params.id,
 				created_at: params.createdAt,
 				patientId: params.patientId,
+				userId: params.userId
 			},
 		});
 

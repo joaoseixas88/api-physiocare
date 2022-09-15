@@ -10,6 +10,7 @@ export namespace AddAttendanceRepository {
 	export type Params = {
 		id: string
 		patientId: string;
+		userId: string
 		createdAt: Date;
 	};
 

@@ -2,6 +2,7 @@ export type Attendance = {
 	id: string
   created_at: Date
 	patientId: string
+	userId: string
 }
 
 export type AddAttendanceDTO = {

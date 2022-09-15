@@ -13,18 +13,13 @@ export class DbAddAttendance implements AddAttendance {
 	async add(params: AddAttendance.Params): Promise<AddAttendance.Result> {
 		const patient = await this.getPatientService.getOne(params);
 		if (patient instanceof Error) return patient;
-		
-
 		const id = this.uuidGenerator.generate();
-
 		const result = await this.repository.add({
+			...params,
 			id,
-			patientId: params.patientId,
 			createdAt: new Date(),
 		});
-
 		if (result) return result;
-
 		return new Error("something went wrong");
 	}
 }

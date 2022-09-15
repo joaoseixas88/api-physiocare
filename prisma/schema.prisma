@@ -36,6 +36,7 @@ model attendances {
   id         String   @id @default(uuid())
   created_at DateTime
   patientId  String
+  userId     String
   patient    patient? @relation(fields: [patientId], references: [id])
 }
 
