@@ -6,7 +6,7 @@ type Response = {
 	response: string;
 };
 
-export const authorizer = (authToken: string): Response | undefined => {
+export const authorizer = async (authToken: string): Promise<Response | undefined> => {
 	const authArray = authToken.split(" ");
 	const token = authArray[1];
 	if (
@@ -21,11 +21,11 @@ export const authorizer = (authToken: string): Response | undefined => {
 	}
 	const jwtAdapter = new JwtAdapter(config.jwt);
 	try {
-		const verified = jwtAdapter.verify(token);
+		const id = await jwtAdapter.decrypt(token);
 
-		if (verified) {
+		if (id) {
 			return {
-				userId: verified.sub as string,
+				userId: id,
 				response: "success",
 			};
 		}

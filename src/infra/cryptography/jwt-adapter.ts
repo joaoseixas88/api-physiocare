@@ -1,19 +1,18 @@
-import { TokenGenerator } from "@/data/contracts/cryptography/token";
-import { JwtPayload, sign, verify as check } from "jsonwebtoken";
+import { Decrypter, Encrypter } from "@/data/contracts/cryptography";
+import { sign, verify } from "jsonwebtoken";
 
-export class JwtAdapter implements TokenGenerator{
+export class JwtAdapter implements Encrypter, Decrypter {
 	constructor(
 		private readonly secret: string,
 		private readonly expiresIn?: string
 	) {}
-	generate(payload: any): string {
-		const token = sign(payload, this.secret, {
+	async decrypt(encrypted: string): Promise<string> {
+		return verify(encrypted, this.secret) as any
+	}
+	async encrypt(plaintext: string): Promise<string> {
+		const token = sign({ id: plaintext }, this.secret, {
 			expiresIn: this.expiresIn ?? "1d",
 		});
-		return token
-	}
-
-	verify(token: string): TokenGenerator.Result  {
-		return check(token, this.secret);
+		return token;
 	}
 }

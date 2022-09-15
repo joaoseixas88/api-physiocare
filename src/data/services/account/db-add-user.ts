@@ -2,12 +2,13 @@ import { AddUser } from "@/domain/features/account/add-user";
 import { AuthenticationException } from "@/presentation/errors";
 import { AddUserRepository, FindUserRepository } from "@/data/contracts/repos";
 import { Encrypter, UuidGenerator } from '@/data/contracts/cryptography';
+import { Hasher } from '../../contracts/cryptography/hasher';
 
 export class DbAddUser implements AddUser {
 	constructor(
 		private readonly repository: AddUserRepository & FindUserRepository,
 		private readonly uidAdapter: UuidGenerator,
-		private readonly crypto: Encrypter
+		private readonly hasher: Hasher
 	) {}
 	async add(params: AddUser.Params): Promise<AddUser.Result> {
 		const userData = await this.repository.find({
@@ -17,7 +18,7 @@ export class DbAddUser implements AddUser {
 			return new AuthenticationException("User already exists");
 		}
 
-		const hashPassword = await this.crypto.encrypt(params.password)
+		const hashPassword = await this.hasher.hash(params.password)
 
 		const id = this.uidAdapter.generate()
 		const user = await this.repository.add({

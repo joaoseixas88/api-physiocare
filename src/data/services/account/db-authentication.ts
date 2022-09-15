@@ -20,12 +20,12 @@ export class Authentication implements SignIn {
 		});
 		if (!user) return new AuthenticationException("Email or password incorrect");		
 		const encryptedPassword = user.password;
-		const verified = await this.bcryptAdapter.verify(
+		const verified = await this.bcryptAdapter.compare(
 			params.password,
 			encryptedPassword
 		);
 		if (verified) {
-			const accessToken = this.jwtAdapter.generate({ sub: user.id });
+			const accessToken = this.jwtAdapter.encrypt(user.id);
 			return accessToken;
 		}
 		return new AuthenticationException("Email or password incorrect");
