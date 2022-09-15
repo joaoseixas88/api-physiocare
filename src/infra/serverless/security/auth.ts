@@ -21,11 +21,10 @@ export const authorizer = async (authToken: string): Promise<Response | undefine
 	}
 	const jwtAdapter = new JwtAdapter(config.jwt);
 	try {
-		const id = await jwtAdapter.decrypt(token);
-
-		if (id) {
+		const jwt = await jwtAdapter.decrypt(token);
+		if (jwt) {
 			return {
-				userId: id,
+				userId: jwt.id,
 				response: "success",
 			};
 		}
