@@ -1,21 +1,25 @@
+import { GetAllAttendancesByUserIdRepository } from '@/data/contracts';
 import { GetAllAttendancesByUserId, GetPatients } from '@/domain/features';
 import { Attendance } from '@/domain/models';
+import { NotAuthorizedException, NotFoundException } from '@/presentation/errors';
 
 export class DbGetAllAttendancesByUserId implements GetAllAttendancesByUserId{
 	constructor (
-		private readonly getAllPatientsService: GetPatients
+		private readonly getAttendancesByUserIdRepo: GetAllAttendancesByUserIdRepository
 	) {}
 	async getAllByUserId(params: GetAllAttendancesByUserId.Params): Promise<GetAllAttendancesByUserId.Result> {
 		// if()
 		
-		const patients = await this.getAllPatientsService.get({
+		const attendances = await this.getAttendancesByUserIdRepo.getAllByUser({
 			userId: params.userId
 		})
-		const attendances = patients.reduce((acc, patient) => {
-			acc.push(...patient.attendances)
-			return acc
-		}, [] as Attendance[])
-		
+		if(!attendances) return new NotFoundException('Attendance')
+		for(const attendance of attendances){
+			if(attendance.userId !== params.userId){
+				return new NotAuthorizedException()
+			}
+		}
 		return attendances
+		
 	}
 }

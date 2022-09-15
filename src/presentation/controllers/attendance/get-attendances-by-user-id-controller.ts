@@ -16,6 +16,12 @@ export class GetAllAttendancesByUserIdController implements Controller {
 		if (error) return badRequest(error);
 		const attendances = await this.service.getAllByUserId(params);
 		if (attendances instanceof Error) return badRequest(attendances);
-		return ok(attendances);
+		const responseAttendances = attendances.map((attendance) => {
+			return {
+				id: attendance.id,
+				created_at: attendance.created_at,
+			};
+		});
+		return ok(responseAttendances);
 	}
 }
