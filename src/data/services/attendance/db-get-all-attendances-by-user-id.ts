@@ -6,6 +6,7 @@ export class DbGetAllAttendancesByUserId implements GetAllAttendancesByUserId{
 		private readonly getAllPatientsService: GetPatients
 	) {}
 	async getAllByUserId(params: GetAllAttendancesByUserId.Params): Promise<GetAllAttendancesByUserId.Result> {
+		// if()
 		
 		const patients = await this.getAllPatientsService.get({
 			userId: params.userId

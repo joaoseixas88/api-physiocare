@@ -8,6 +8,8 @@ export interface GetAllAttendancesByUserId {
 export namespace GetAllAttendancesByUserId {
 	export type Params = {
 		userId: string;
+		startDate?: Date
+		endDate?: Date
 	};
 
 	export type Result = Attendance[] | Error
