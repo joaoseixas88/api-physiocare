@@ -16,7 +16,6 @@ export namespace AddAttendanceRepository {
 	export type Result = boolean;
 }
 
-
 export interface DeleteAttendanceRepository {
 	delete(params: DeleteAttendanceRepository.Params): Promise<DeleteAttendanceRepository.Result>
 }
@@ -36,4 +35,3 @@ export namespace GetOneAttendanceRepository {
 	}
 	export type Result = Attendance | null 
 }
-

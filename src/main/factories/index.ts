@@ -1,4 +1,3 @@
-import { fileURLToPath } from 'url'
 
 export * from './validators'
 export * from './controllers'

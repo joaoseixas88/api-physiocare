@@ -1,4 +1,4 @@
-import { GetAllAttendancesById } from "@/domain/features";
+import { GetAllAttendancesByPatientId } from "@/domain/features";
 import { Validation } from "@/validation/protocols";
 import { Controller } from "@/presentation/protocols";
 import { badRequest, ok } from "@/presentation/helpers";
@@ -8,9 +8,9 @@ type IRequest = {
 	patientId: string;
 };
 
-export class GetAllAttendancesByIdController implements Controller {
+export class GetAllAttendancesByPatientIdController implements Controller {
 	constructor(
-		private readonly service: GetAllAttendancesById,
+		private readonly service: GetAllAttendancesByPatientId,
 		private readonly validator: Validation
 	) {}
 

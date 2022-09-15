@@ -10,5 +10,5 @@ export namespace GetAllAttendancesByUserId {
 		userId: string;
 	};
 
-	export type Result = Attendance[];
+	export type Result = Attendance[] | Error
 }

@@ -1,8 +1,8 @@
-const path = "src/infra/serverless/functions";
+const path = "src/infra/serverless/functions/attendance";
 
 export const attendance = {
 	newAttendance: {
-		handler: `${path}/add-attendance.handle`,
+		handler: `${path}/add.handle`,
 		events: [
 			{
 				httpApi: {
@@ -12,19 +12,30 @@ export const attendance = {
 			},
 		],
 	},
-	getAll: {
-		handler: `${path}/get-attendances.handle`,
+	getAllByPatientId: {
+		handler: `${path}/get-all-by-patient.handle`,
 		events: [
 			{
 				httpApi: {
-					path: "/attendance/{patientId}",
+					path: "/attendance/patient/{patientId}",
+					method: "GET",
+				},
+			},
+		],
+	},
+	getAllByUserId: {
+		handler: `${path}/get-all-by-user.handle`,
+		events: [
+			{
+				httpApi: {
+					path: "/attendance/user",
 					method: "GET",
 				},
 			},
 		],
 	},
 	delete: {
-		handler: `${path}/delete-attendance.handle`,
+		handler: `${path}/delete-one.handle`,
 		events: [
 			{
 				httpApi: {
@@ -33,5 +44,6 @@ export const attendance = {
 				},
 			},
 		],
-	}
+	},
+	
 };

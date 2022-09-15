@@ -1,4 +1,4 @@
-const path = "src/infra/serverless/functions";
+const path = "src/infra/serverless/functions/patient";
 
 export const patient = {
 	newPatient: {
