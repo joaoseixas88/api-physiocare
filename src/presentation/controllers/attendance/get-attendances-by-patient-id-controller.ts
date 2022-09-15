@@ -8,6 +8,11 @@ type IRequest = {
 	patientId: string;
 };
 
+type IResponse = {
+	id: string;
+	created_at: Date;
+};
+
 export class GetAllAttendancesByPatientIdController implements Controller {
 	constructor(
 		private readonly service: GetAllAttendancesByPatientId,
@@ -19,10 +24,15 @@ export class GetAllAttendancesByPatientIdController implements Controller {
 	): Promise<Controller.Result> {
 		const error = this.validator.validate(params);
 		if (error) return badRequest(error);
-		
+
 		const attendances = await this.service.get(params);
 		if (attendances instanceof Error) return badRequest(attendances);
-
-		return ok(attendances);
+		const responseAttendances = attendances.map((attendance) => {
+			return {
+				id: attendance.id,
+				created_at: attendance.created_at,
+			};
+		});
+		return ok(responseAttendances);
 	}
 }

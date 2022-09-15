@@ -1,18 +1,29 @@
-import { AddAttendanceRepository } from "@/data/contracts/repos/attendance-repository";
+import {
+	DeleteAttendanceRepository,
+	GetOneAttendanceRepository
+} from "@/data/contracts/repos";
+import {
+	AddAttendanceRepository,
+	GetAllAttendancesByPatientIdRepository,
+	GetAllAttendancesByUserIdRepository
+} from "@/data/contracts/repos/attendance-repository";
 import { dbClient } from "@/presentation/helpers";
-import { DeleteAttendanceRepository, GetOneAttendanceRepository } from '@/data/contracts/repos';
 
 export class AttendancePrismaRepository
-	implements AddAttendanceRepository, DeleteAttendanceRepository, GetOneAttendanceRepository
+	implements
+		AddAttendanceRepository,
+		DeleteAttendanceRepository,
+		GetOneAttendanceRepository,
+		GetAllAttendancesByPatientIdRepository,
+		GetAllAttendancesByUserIdRepository
 {
-	
 	async add(params: AddAttendanceRepository.Params): Promise<boolean> {
 		const attendance = await dbClient.attendances.create({
 			data: {
 				id: params.id,
 				created_at: params.createdAt,
 				patientId: params.patientId,
-				userId: params.userId
+				userId: params.userId,
 			},
 		});
 
@@ -32,12 +43,36 @@ export class AttendancePrismaRepository
 		}
 	}
 
-	async getOne(params: GetOneAttendanceRepository.Params): Promise<GetOneAttendanceRepository.Result> {
+	async getOne(
+		params: GetOneAttendanceRepository.Params
+	): Promise<GetOneAttendanceRepository.Result> {
 		const attendance = await dbClient.attendances.findUnique({
 			where: {
-				id: params.id
-			}
-		})
-		return attendance
+				id: params.id,
+			},
+		});
+		return attendance;
+	}
+
+	async getAllByUser(
+		params: GetAllAttendancesByUserIdRepository.Params
+	): Promise<GetAllAttendancesByUserIdRepository.Result> {
+		const attendances = await dbClient.attendances.findMany({
+			where: {
+				userId: params.userId,
+			},
+		});
+		return attendances;
+	}
+	async getAllByPatient(
+		params: GetAllAttendancesByPatientIdRepository.Params
+	): Promise<GetAllAttendancesByPatientIdRepository.Result> {
+		const attendances = await dbClient.attendances.findMany({
+			where: {
+				patientId: params.patientId,
+			},
+		});
+
+		return attendances;
 	}
 }

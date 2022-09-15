@@ -8,9 +8,9 @@ export interface AddAttendanceRepository {
 
 export namespace AddAttendanceRepository {
 	export type Params = {
-		id: string
+		id: string;
 		patientId: string;
-		userId: string
+		userId: string;
 		createdAt: Date;
 	};
 
@@ -18,21 +18,48 @@ export namespace AddAttendanceRepository {
 }
 
 export interface DeleteAttendanceRepository {
-	delete(params: DeleteAttendanceRepository.Params): Promise<DeleteAttendanceRepository.Result>
+	delete(
+		params: DeleteAttendanceRepository.Params
+	): Promise<DeleteAttendanceRepository.Result>;
 }
 export namespace DeleteAttendanceRepository {
 	export type Params = {
-		id: string
-	}
-	export type Result = boolean 
+		id: string;
+	};
+	export type Result = boolean;
 }
 
 export interface GetOneAttendanceRepository {
-	getOne(params: GetOneAttendanceRepository.Params): Promise<GetOneAttendanceRepository.Result>
+	getOne(
+		params: GetOneAttendanceRepository.Params
+	): Promise<GetOneAttendanceRepository.Result>;
 }
 export namespace GetOneAttendanceRepository {
 	export type Params = {
-		id: string
-	}
-	export type Result = Attendance | null 
+		id: string;
+	};
+	export type Result = Attendance | null;
+}
+export interface GetAllAttendancesByPatientIdRepository {
+	getAllByPatient(
+		params: GetAllAttendancesByPatientIdRepository.Params
+	): Promise<GetAllAttendancesByPatientIdRepository.Result>;
+}
+export namespace GetAllAttendancesByPatientIdRepository {
+	export type Params = {
+		patientId: string;
+	};
+	export type Result = Attendance[] | null;
+}
+
+export interface GetAllAttendancesByUserIdRepository {
+	getAllByUser(
+		params: GetAllAttendancesByUserIdRepository.Params
+	): Promise<GetAllAttendancesByUserIdRepository.Result>;
+}
+export namespace GetAllAttendancesByUserIdRepository {
+	export type Params = {
+		userId: string;
+	};
+	export type Result = Attendance[] | null;
 }
