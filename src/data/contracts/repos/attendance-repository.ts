@@ -60,6 +60,8 @@ export interface GetAllAttendancesByUserIdRepository {
 export namespace GetAllAttendancesByUserIdRepository {
 	export type Params = {
 		userId: string;
+		startDate?: Date
+		endDate?: Date
 	};
 	export type Result = Attendance[] | null;
 }

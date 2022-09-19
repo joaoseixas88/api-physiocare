@@ -1,11 +1,11 @@
 import {
 	DeleteAttendanceRepository,
-	GetOneAttendanceRepository
+	GetOneAttendanceRepository,
 } from "@/data/contracts/repos";
 import {
 	AddAttendanceRepository,
 	GetAllAttendancesByPatientIdRepository,
-	GetAllAttendancesByUserIdRepository
+	GetAllAttendancesByUserIdRepository,
 } from "@/data/contracts/repos/attendance-repository";
 import { dbClient } from "@/presentation/helpers";
 
@@ -57,12 +57,23 @@ export class AttendancePrismaRepository
 	async getAllByUser(
 		params: GetAllAttendancesByUserIdRepository.Params
 	): Promise<GetAllAttendancesByUserIdRepository.Result> {
-		const attendances = await dbClient.attendances.findMany({
-			where: {
+		let query: object;
+		if (params.startDate && params.endDate) {
+			query = {
 				userId: params.userId,
-			},
-		});
-		return attendances;
+				created_at: {
+					gte: params.startDate,
+					lte: params.endDate,
+				},
+			};
+		} else {
+			query = {
+				userId: params.userId
+			}
+		}
+		return await dbClient.attendances.findMany({
+			where: query
+		})
 	}
 	async getAllByPatient(
 		params: GetAllAttendancesByPatientIdRepository.Params
