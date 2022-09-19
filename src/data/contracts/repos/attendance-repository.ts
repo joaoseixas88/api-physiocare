@@ -48,6 +48,8 @@ export interface GetAllAttendancesByPatientIdRepository {
 export namespace GetAllAttendancesByPatientIdRepository {
 	export type Params = {
 		patientId: string;
+		startDate?: Date
+		endDate?: Date
 	};
 	export type Result = Attendance[] | null;
 }

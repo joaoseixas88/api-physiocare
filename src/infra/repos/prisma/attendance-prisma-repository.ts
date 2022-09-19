@@ -57,22 +57,15 @@ export class AttendancePrismaRepository
 	async getAllByUser(
 		params: GetAllAttendancesByUserIdRepository.Params
 	): Promise<GetAllAttendancesByUserIdRepository.Result> {
-		let query: object;
-		if (params.startDate && params.endDate) {
-			query = {
+		
+		return await dbClient.attendances.findMany({
+			where: {
 				userId: params.userId,
 				created_at: {
 					gte: params.startDate,
 					lte: params.endDate,
 				},
-			};
-		} else {
-			query = {
-				userId: params.userId
 			}
-		}
-		return await dbClient.attendances.findMany({
-			where: query
 		})
 	}
 	async getAllByPatient(
@@ -81,6 +74,10 @@ export class AttendancePrismaRepository
 		const attendances = await dbClient.attendances.findMany({
 			where: {
 				patientId: params.patientId,
+				created_at: {
+					gte: params.startDate,
+					lte: params.endDate
+				}
 			},
 		});
 

@@ -8,6 +8,8 @@ export namespace GetAllAttendancesByPatientId {
 	export type Params = {
 		userId: string;
 		patientId: string;
+		startDate?: string
+		endDate: string
 	};
 	export type Result = Attendance[] | Error;
 }

@@ -6,11 +6,8 @@ import { badRequest, ok } from "@/presentation/helpers";
 type IRequest = {
 	userId: string;
 	patientId: string;
-};
-
-type IResponse = {
-	id: string;
-	created_at: Date;
+	startDate?: string
+	endDate: string
 };
 
 export class GetAllAttendancesByPatientIdController implements Controller {
@@ -24,6 +21,7 @@ export class GetAllAttendancesByPatientIdController implements Controller {
 	): Promise<Controller.Result> {
 		const error = this.validator.validate(params);
 		if (error) return badRequest(error);
+
 
 		const attendances = await this.service.get(params);
 		if (attendances instanceof Error) return badRequest(attendances);
