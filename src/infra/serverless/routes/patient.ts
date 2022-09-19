@@ -34,4 +34,15 @@ export const patient = {
 			},
 		],
 	},
+	findPatients: {
+		handler: `${path}/find-patients.handle`,
+		events: [
+			{
+				httpApi: {
+					path: "/patients",
+					method: "GET",
+				},
+			},
+		],
+	},
 };

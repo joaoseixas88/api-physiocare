@@ -1,5 +1,7 @@
 import { attendance } from "@/infra/serverless/routes/attendance";
+import { homecare } from "@/infra/serverless/routes/homecare";
 import { patient } from "@/infra/serverless/routes/patient";
+import { schedule } from "@/infra/serverless/routes/schedule";
 import type { AWS } from "@serverless/typescript";
 import { account } from "src/infra/serverless/routes/account";
 
@@ -28,7 +30,9 @@ const serverlessConfiguration: AWS = {
 	functions: {
 		...account,		
 		...patient,
-		...attendance
+		...attendance,
+		...schedule,
+		...homecare
 	},
 	package: {
 		patterns: [

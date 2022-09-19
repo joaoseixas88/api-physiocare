@@ -1,3 +1,4 @@
+import { FindPatients } from "@/domain/features/patient/find-patients";
 import { Patient } from "@/domain/models";
 
 export interface AddPatientRepository {
@@ -7,7 +8,7 @@ export interface AddPatientRepository {
 }
 
 export namespace AddPatientRepository {
-	export type Params = Omit<Patient, "attendances"> & { userId: string };
+	export type Params = Omit<Patient, "attendances" | "created_at"> & { userId: string, homecareId: string };
 
 	export type Result = boolean;
 }
@@ -38,4 +39,19 @@ export namespace GetOnePatientRepository {
 	};
 
 	export type Result = Patient & { userId: string } | undefined
+}
+
+
+export interface FindPatientsRepository {
+	findMany(params: FindPatientsRepository.Params): Promise<FindPatientsRepository.Result>
+}
+
+export namespace FindPatientsRepository {
+	export type Params = {
+		userId: string
+		name?:string
+		age?:number
+		price?:number
+	}
+	export type Result = Omit<Patient, "attendances">[]
 }

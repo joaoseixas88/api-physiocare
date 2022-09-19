@@ -5,7 +5,7 @@ export interface AddUserRepository {
 }
 
 export namespace AddUserRepository {
-	export type Params = Omit<User, "patients">;
+	export type Params = Omit<User, "patients" | "created_at">;
 
 	export type Result = boolean;
 }

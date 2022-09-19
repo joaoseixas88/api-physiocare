@@ -26,7 +26,7 @@ export const serverlessAdapter = async (
 			...pathParameters,
 			...queryStringParameters,
 		};
-
+		params.userId = undefined
 		const authorization = headers.authorization;
 		if (authorization) {
 			const auth = await authorizer(authorization);

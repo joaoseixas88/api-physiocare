@@ -1,25 +1,28 @@
 import {
 	AddPatientRepository,
+	FindPatientsRepository,
 	GetOnePatientRepository,
 	GetPatientsRepository,
 } from "@/data/contracts/repos";
+import { FindPatients } from "@/domain/features";
 import { dbClient } from "@/presentation/helpers";
 
 export class PatientPrismaRepository
-	implements AddPatientRepository, GetPatientsRepository, GetOnePatientRepository
+	implements AddPatientRepository, GetPatientsRepository, GetOnePatientRepository, FindPatientsRepository
 {
 	
+	
 	async add(params: AddPatientRepository.Params): Promise<boolean> {
-		const { age, created_at, id, name, price, weekDays, userId } = params;
+		const { age, id, name, price, weekDays, userId,  homecareId} = params;
 		const result = await dbClient.patient.create({
 			data: {
 				age,
-				created_at,
 				id,
 				name,
 				price,
 				weekDays,
 				userId,
+				homecareId
 			},
 		});
 
@@ -54,5 +57,21 @@ export class PatientPrismaRepository
 			return patient
 		}
 		return undefined
+	}
+
+	async findMany(params: FindPatientsRepository.Params): Promise<FindPatientsRepository.Result> {
+
+		const patients = await dbClient.patient.findMany({
+			where: {
+				userId: params.userId,
+				name: {
+					contains: params.name,
+					mode: 'insensitive'
+				},
+				age: params.age,
+				price: params.price,
+			}		
+		})
+		return patients
 	}
 }

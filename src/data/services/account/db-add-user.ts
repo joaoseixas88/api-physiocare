@@ -25,7 +25,8 @@ export class DbAddUser implements AddUser {
 			...params,
 			id,
 			password: hashPassword,
-			created_at: new Date()
+			
+		
 		});
 		return !!user;
 	}

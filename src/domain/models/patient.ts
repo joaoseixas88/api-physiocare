@@ -6,12 +6,13 @@ export type Patient = {
 	age: number
 	price: number
 	created_at: Date
-	weekDays: string[]
+	weekDays: WeekDay[]
 	attendances: Attendance[]
 }
 
 export type AddPatientDTO = {
 	userId: string
+	homecareId: string
 	name: string
 	age: number
 	price: number

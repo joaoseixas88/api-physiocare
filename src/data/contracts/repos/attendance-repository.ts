@@ -11,7 +11,6 @@ export namespace AddAttendanceRepository {
 		id: string;
 		patientId: string;
 		userId: string;
-		createdAt: Date;
 	};
 
 	export type Result = boolean;

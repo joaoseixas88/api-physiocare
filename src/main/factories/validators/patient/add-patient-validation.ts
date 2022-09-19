@@ -2,12 +2,12 @@ import { Validation } from "@/validation/protocols";
 import {
 	MissingParamsValidation,
 	ValidationComposite,
-	AuthorizationValidation
+	AuthorizationValidation,
 } from "@/validation/validators";
 
 export const makeAddPatientValidation = (): Validation => {
 	const validations = [];
-	const requiredParams = ["name", "age", "price", "weekDays"];
+	const requiredParams = ["name", "age", "price", "weekDays", "homecareId"];
 	validations.push(new AuthorizationValidation());
 	for (const param of requiredParams) {
 		validations.push(new MissingParamsValidation(param));
