@@ -73,5 +73,5 @@ export namespace UpdatePatientRepository {
 		age?: number;
 		price?: number;
 	};
-	export type Result = boolean;
+	export type Result = boolean | Error;
 }
