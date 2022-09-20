@@ -8,7 +8,10 @@ export interface AddPatientRepository {
 }
 
 export namespace AddPatientRepository {
-	export type Params = Omit<Patient, "attendances" | "created_at"> & { userId: string, homecareId: string };
+	export type Params = Omit<Patient, "attendances" | "created_at"> & {
+		userId: string;
+		homecareId: string;
+	};
 
 	export type Result = boolean;
 }
@@ -38,20 +41,37 @@ export namespace GetOnePatientRepository {
 		patientId: string;
 	};
 
-	export type Result = Patient & { userId: string } | undefined
+	export type Result = (Patient & { userId: string }) | undefined;
 }
 
-
 export interface FindPatientsRepository {
-	findMany(params: FindPatientsRepository.Params): Promise<FindPatientsRepository.Result>
+	findMany(
+		params: FindPatientsRepository.Params
+	): Promise<FindPatientsRepository.Result>;
 }
 
 export namespace FindPatientsRepository {
 	export type Params = {
-		userId: string
-		name?:string
-		age?:number
-		price?:number
-	}
-	export type Result = Omit<Patient, "attendances">[]
+		userId: string;
+		name?: string;
+		age?: number;
+		price?: number;
+	};
+	export type Result = Omit<Patient, "attendances">[];
+}
+
+export interface UpdatePatientRepository {
+	update(
+		params: UpdatePatientRepository.Params
+	): Promise<UpdatePatientRepository.Result>;
+}
+
+export namespace UpdatePatientRepository {
+	export type Params = {
+		patientId: string;
+		name?: string;
+		age?: number;
+		price?: number;
+	};
+	export type Result = boolean;
 }
