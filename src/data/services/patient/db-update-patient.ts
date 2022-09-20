@@ -1,10 +1,10 @@
+import { UpdatePatientRepository } from "@/data/contracts";
 import { UpdatePatient } from "@/domain/features";
 
-export interface DbUpdatePatient {
-	update(params: DbUpdatePatient.Params): Promise<DbUpdatePatient>;
-}
+export class DbUpdatePatient implements UpdatePatient {
+	constructor(private readonly updatePatientRepo: UpdatePatientRepository) {}
 
-export namespace DbUpdatePatient {
-	export type Params = UpdatePatient.Params;
-	export type Result = boolean | Error;
+	async update(params: UpdatePatient.Params): Promise<UpdatePatient.Result> {
+		const result = await this.updatePatientRepo.update(params);
+	}
 }
