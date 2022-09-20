@@ -45,11 +45,12 @@ model attendances {
 
 model homecare {
   id         String    @id @default(uuid())
+  name       String
   created_at DateTime  @default(now())
   price      Float?
   userId     String
   user       user      @relation(fields: [userId], references: [id])
-  patient    patient[]
+  patients   patient[]
 }
 
 enum WeekDays {

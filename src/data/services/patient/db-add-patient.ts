@@ -9,6 +9,7 @@ export class DbAddPatient implements AddPatient {
 	) {}
 	async add(params: AddPatient.Params): Promise<boolean> {
 		const { age, name, price, weekDays, userId, homecareId } = params;
+
 		const id = this.uuidGenerator.generate();
 		const patient: AddPatientRepository.Params = {
 			age,
@@ -17,7 +18,7 @@ export class DbAddPatient implements AddPatient {
 			weekDays,
 			id,
 			userId,
-			homecareId
+			homecareId,
 		};
 		const result = this.addPatientRepository.add(patient);
 		return result;

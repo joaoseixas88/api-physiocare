@@ -11,5 +11,27 @@ export const homecare = {
 				},
 			},
 		],
-	}
+	},
+	getAll: {
+		handler: `${path}/get-all.handle`,
+		events: [
+			{
+				httpApi: {
+					path: "/homecare",
+					method: "GET",
+				},
+			},
+		],
+	},
+	getOne: {
+		handler: `${path}/get-one.handle`,
+		events: [
+			{
+				httpApi: {
+					path: "/homecare/{homecareId}",
+					method: "GET",
+				},
+			},
+		],
+	},
 };
