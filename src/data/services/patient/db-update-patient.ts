@@ -17,7 +17,6 @@ export class DbUpdatePatient implements UpdatePatient {
 			patientId,
 			userId,
 		});
-
 		if (!patient) return new NotFoundException("Patient");
 
 		const result = await this.patientRepo.update({

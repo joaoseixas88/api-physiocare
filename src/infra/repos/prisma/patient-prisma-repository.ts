@@ -49,9 +49,10 @@ export class PatientPrismaRepository
 	async getOne(
 		params: GetOnePatientRepository.Params
 	): Promise<GetOnePatientRepository.Result> {
-		const patient = await dbClient.patient.findUnique({
+		const patient = await dbClient.patient.findMany({
 			where: {
 				id: params.patientId,
+				userId: params.userId,
 			},
 			include: {
 				attendances: true,
@@ -59,7 +60,7 @@ export class PatientPrismaRepository
 		});
 
 		if (patient) {
-			return patient;
+			return patient[0];
 		}
 		return undefined;
 	}
@@ -94,7 +95,6 @@ export class PatientPrismaRepository
 				weekDays: params.weekDays,
 			},
 		});
-
-		throw new Error("Method not implemented.");
+		return !!patient;
 	}
 }

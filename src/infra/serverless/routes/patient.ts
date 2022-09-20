@@ -45,4 +45,15 @@ export const patient = {
 			},
 		],
 	},
+	updatePatient: {
+		handler: `${path}/update-patient.handle`,
+		events: [
+			{
+				httpApi: {
+					path: "/patient/update/{patientId}",
+					method: "POST",
+				},
+			},
+		],
+	},
 };
