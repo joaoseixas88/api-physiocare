@@ -10,6 +10,7 @@ export namespace UpdatePatient {
 		patientId: string;
 		price?: number;
 		age?: number;
+		name?: string;
 		weekDays?: WeekDay[];
 	};
 

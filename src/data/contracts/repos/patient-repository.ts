@@ -1,5 +1,5 @@
 import { FindPatients } from "@/domain/features/patient/find-patients";
-import { Patient } from "@/domain/models";
+import { Patient, WeekDay } from "@/domain/models";
 
 export interface AddPatientRepository {
 	add(
@@ -72,6 +72,7 @@ export namespace UpdatePatientRepository {
 		name?: string;
 		age?: number;
 		price?: number;
+		weekDays?: WeekDay[];
 	};
 	export type Result = boolean | Error;
 }

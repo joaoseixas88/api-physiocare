@@ -3,6 +3,7 @@ import {
 	FindPatientsRepository,
 	GetOnePatientRepository,
 	GetPatientsRepository,
+	UpdatePatientRepository,
 } from "@/data/contracts/repos";
 import { dbClient } from "@/presentation/helpers";
 
@@ -11,7 +12,8 @@ export class PatientPrismaRepository
 		AddPatientRepository,
 		GetPatientsRepository,
 		GetOnePatientRepository,
-		FindPatientsRepository
+		FindPatientsRepository,
+		UpdatePatientRepository
 {
 	async add(params: AddPatientRepository.Params): Promise<boolean> {
 		const { age, id, name, price, weekDays, userId, homecareId } = params;
@@ -77,5 +79,22 @@ export class PatientPrismaRepository
 			},
 		});
 		return patients;
+	}
+	async update(
+		params: UpdatePatientRepository.Params
+	): Promise<UpdatePatientRepository.Result> {
+		const patient = await dbClient.patient.update({
+			where: {
+				id: params.patientId,
+			},
+			data: {
+				age: params.age,
+				price: params.price,
+				name: params.name,
+				weekDays: params.weekDays,
+			},
+		});
+
+		throw new Error("Method not implemented.");
 	}
 }
