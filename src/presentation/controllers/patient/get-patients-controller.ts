@@ -18,7 +18,20 @@ export class GetPatientsController implements Controller {
 		const error = this.validator.validate(params);
 		if (error) return badRequest(error);
 		const patients = await this.service.get(params);
-		if (patients) return ok(patients);
+		if (patients) {
+			const response = patients.map((patient) => {
+				return {
+					id: patient.id,
+					name: patient.name,
+					age: patient.age,
+					price: patient.price,
+					weekDays: patient.weekDays,
+					attendances: patient.attendances,
+				};
+			});
+			return ok(response);
+		}
+
 		return badRequest();
 	}
 }

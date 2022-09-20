@@ -6,8 +6,8 @@ import { badRequest, ok } from "@/presentation/helpers";
 type IRequest = {
 	userId: string;
 	patientId: string;
-	startDate?: string
-	endDate: string
+	startDate?: string;
+	endDate: string;
 };
 
 export class GetAllAttendancesByPatientIdController implements Controller {
@@ -22,13 +22,13 @@ export class GetAllAttendancesByPatientIdController implements Controller {
 		const error = this.validator.validate(params);
 		if (error) return badRequest(error);
 
-
 		const attendances = await this.service.get(params);
 		if (attendances instanceof Error) return badRequest(attendances);
 		const responseAttendances = attendances.map((attendance) => {
 			return {
 				id: attendance.id,
-				created_at: attendance.created_at,
+				date: attendance.date,
+				price: attendance.price,
 			};
 		});
 		return ok(responseAttendances);

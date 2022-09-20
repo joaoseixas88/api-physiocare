@@ -6,6 +6,7 @@ export namespace AddAttendance {
 	export type Params = {
 		userId: string;
 		patientId: string;
+		price?: number;
 	};
 
 	export type Result = Boolean | Error;

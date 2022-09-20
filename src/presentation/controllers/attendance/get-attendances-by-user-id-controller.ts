@@ -3,7 +3,6 @@ import { badRequest, ok } from "@/presentation/helpers";
 import { Controller } from "@/presentation/protocols";
 import { Validation } from "@/validation/protocols";
 
-
 export class GetAllAttendancesByUserIdController implements Controller {
 	constructor(
 		private readonly service: GetAllAttendancesByUserId,
@@ -16,12 +15,14 @@ export class GetAllAttendancesByUserIdController implements Controller {
 		if (error) return badRequest(error);
 		const attendances = await this.service.getAllByUserId(params);
 		if (attendances instanceof Error) return badRequest(attendances);
-		const responseAttendances = attendances.map((attendance) => {
+		console.log(attendances);
+		const response = attendances.map((attendance) => {
 			return {
 				id: attendance.id,
-				created_at: attendance.created_at,
+				date: attendance.date,
+				price: attendance.price,
 			};
 		});
-		return ok(responseAttendances);
+		return ok(response);
 	}
 }

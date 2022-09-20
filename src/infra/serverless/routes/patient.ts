@@ -51,7 +51,7 @@ export const patient = {
 			{
 				httpApi: {
 					path: "/patient/update/{patientId}",
-					method: "POST",
+					method: "PATCH",
 				},
 			},
 		],

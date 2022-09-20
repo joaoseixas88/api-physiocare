@@ -11,6 +11,7 @@ export namespace AddAttendanceRepository {
 		id: string;
 		patientId: string;
 		userId: string;
+		price: number;
 	};
 
 	export type Result = boolean;
@@ -47,8 +48,8 @@ export interface GetAllAttendancesByPatientIdRepository {
 export namespace GetAllAttendancesByPatientIdRepository {
 	export type Params = {
 		patientId: string;
-		startDate?: Date
-		endDate?: Date
+		startDate?: Date;
+		endDate?: Date;
 	};
 	export type Result = Attendance[] | null;
 }
@@ -61,8 +62,8 @@ export interface GetAllAttendancesByUserIdRepository {
 export namespace GetAllAttendancesByUserIdRepository {
 	export type Params = {
 		userId: string;
-		startDate?: Date
-		endDate?: Date
+		startDate?: Date;
+		endDate?: Date;
 	};
 	export type Result = Attendance[] | null;
 }

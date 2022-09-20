@@ -1,17 +1,19 @@
 export type Attendance = {
-	id: string
-  created_at: Date
-	patientId: string
-	userId: string
-}
+	id: string;
+	date: Date;
+	patientId: string;
+	price: number;
+	userId: string;
+};
 
 export type AddAttendanceDTO = {
-	patientId: string
-	userId: string
-}
+	patientId: string;
+	userId: string;
+	price?: number;
+};
 
 export type DeleteAttendanceDTO = {
-	patientId: string
-	userId: string
-	attendanceId: string
-}
+	patientId: string;
+	userId: string;
+	attendanceId: string;
+};

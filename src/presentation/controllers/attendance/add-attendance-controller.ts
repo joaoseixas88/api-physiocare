@@ -16,10 +16,7 @@ export class AddAttendanceController implements Controller {
 		const error = this.validator.validate(params);
 		if (error) return badRequest(error);
 
-		const result = await this.service.add({
-			patientId: params.patientId,
-			userId: params.userId,
-		});
+		const result = await this.service.add(params);
 		if (result instanceof Error) return badRequest(result);
 		return created();
 	}

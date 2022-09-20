@@ -36,11 +36,12 @@ model patient {
 }
 
 model attendances {
-  id         String   @id @default(uuid())
-  created_at DateTime @default(now())
-  patientId  String
-  userId     String
-  patient    patient? @relation(fields: [patientId], references: [id])
+  id        String   @id @default(uuid())
+  date      DateTime @default(now())
+  patientId String
+  userId    String
+  price     Float
+  patient   patient? @relation(fields: [patientId], references: [id])
 }
 
 model homecare {
